@@ -1,0 +1,2821 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[slovene]{babel}
+
+\usepackage{amsthm}
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{relsize}
+\usepackage{mathrsfs}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\renewcommand{\P}{\mathbb{P}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\ls}{\langle}
+\newcommand{\rs}{\rangle}
+\renewcommand{\a}{\mathbf{a}}
+\renewcommand{\b}{\mathbf{b}}
+\renewcommand{\c}{\mathbf{c}}
+\newcommand{\x}{\mathbf{x}}
+\newcommand{\y}{\mathbf{y}}
+\renewcommand{\u}{\mathbf{u}}
+\newcommand{\vv}{\mathbf{v}}
+\newcommand{\e}{\mathbf{e}}
+\newcommand{\0}{\mathbf{0}}
+\newcommand{\w}{\mathbf{w}}
+\newcommand{\rang}{\text{rang}\,}
+\newcommand{\ind}{\text{ind}}
+\newcommand{\sgn}{\text{sign}}
+\newcommand{\M}{M}
+\newcommand{\NN}{N}
+\newcommand{\im}{\text{im}\,}
+\newcommand{\K}{K}
+\renewcommand{\L}{L}
+\newcommand{\Lin}{\mathcal{L}\textit{in}\,}
+\newcommand{\B}{\mathscr{B}}
+\newcommand{\C}{\mathscr{C}}
+\newcommand{\D}{\mathscr{D}}
+\newcommand{\RR}{\mathscr{R}}
+\renewcommand{\sp}[2]{\langle #1, #2 \rangle}
+\newcommand{\T}{\mathsf{T}}
+\renewcommand{\H}{\mathsf{H}}
+
+\theoremstyle{definition}
+\newtheorem{definicija}{Definicija}[section]
+
+\theoremstyle{definition}
+\newtheorem{trditev}{Trditev}[section]
+
+\theoremstyle{definition}
+\newtheorem{izrek}{Izrek}[section]
+
+\theoremstyle{definition}
+\newtheorem{metoda}{Metoda}[section]
+
+\newtheorem*{posledica}{Posledica}
+\newtheorem*{opomba}{Opomba}
+\newtheorem*{komentar}{Komentar}
+\newtheorem{lema}{Lema}
+\newtheorem*{dokaz}{Dokaz}
+\newtheorem*{posplošitev}{Posplošitev}
+\newtheorem*{dogovor}{Dogovor}
+\newtheorem*{sklep}{Sklep}
+
+\title{Algebra 1 - definicije, trditve in izreki}
+\author{Oskar Vavtar \\
+po predavanjih profesorja Primoža Moravca}
+\date{2019/20}
+
+\begin{document}
+\maketitle
+\pagebreak
+\tableofcontents
+\pagebreak
+
+% #################################################################################################
+
+\section{Vektorji v ravnini in prostoru}
+\vspace{0.5cm}
+
+\begin{definicija}[Vektor - neformalno]
+
+\textit{Vektor} je usmerjena daljica. \textit{Ničelni vektor} $\0$ je točka ter kaže v vse smeri. \\
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{trditev}
+
+\noindent Za vektorje $\a,\b,\c \in \R^n$ in skalarja $\lambda,\mu \in \R$ velja:
+\begin{itemize}
+	\item $\a + \b ~=~ \b + \a$
+	\item $(\a + \b) + \c ~=~ \a + (\b + \c) $
+	\item $\a + \0 ~=~ \a$
+	\item $\a + -\a ~=~ \0$
+	\item $\lambda(\a + \b) ~=~ \lambda\a + \lambda\b$
+	\item $(\lambda + \mu)\a ~=~ \lambda\a + \mu\a$
+	\item $(\lambda\mu)\a ~=~ \lambda(\mu\a)$
+	\item $1 \cdot \a ~=~ \a$
+\end{itemize}
+
+\end{trditev}
+
+\begin{definicija}[Skalarni produkt]
+
+Naj bosta $\a = (x_1, \ldots, x_n)^\T$ in \\$\b = (y_1, \ldots, y_n)^\T$ vektorja v $\R^n$. \textit{Skalarni produkt} $\a$ in $\b$ je število
+$$\ls \a, \b \rs ~=~ x_1 y_1 +  \ldots + x_n y_n.$$
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{trditev}
+
+Naj bodo $\a,\b,\c \in \R^n$ in $\lambda \in \R$. Potem velja:
+\begin{enumerate}
+	\item $\ls \a, \a \rs ~\geq~ 0$
+	\item $\ls \a, \a \rs ~=~ 0 ~\iff~ \a = \0$
+	\item $\ls \a, \b \rs ~=~ \ls \b, \a \rs$
+	\item $\ls \a + \b, \c \rs ~=~ \ls \a, \c \rs + \ls \b, \c \rs$
+	\item $\ls \lambda\a, \b \rs ~=~ \lambda \ls \a, \b \rs$
+\end{enumerate}
+
+\end{trditev}
+\vspace{0.5cm}
+
+\begin{definicija}[Dolžina vektorja]
+
+\textit{Dolžina} vektorja $\a \in \R^n$ je
+$$|\a| ~=~ \sqrt{\ls a, a \rs}.$$
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{izrek}[Kosinusni izrek]
+
+$\a,\b \in \R^n$, $\varphi \in \R$:
+$$\ls \a, \b \rs ~=~ |\a| |\b| \cos{\varphi}$$
+
+\end{izrek}
+\vspace{0.5cm}
+
+\begin{izrek}[Cauchy-Schwarzova neenakost]
+
+Naj bosta $\a,\b \in \R^n$. Potem velja:
+$$|\ls \a, \b \rs| ~\leq~ |\a| \cdot |\b|.$$
+Enačaj velja $\iff$ $\a = \alpha\b$, $\alpha \in \R$.
+
+\end{izrek}
+\vspace{0.5cm}
+
+\begin{izrek}
+
+Naj bosta $\a,\b \in \R^n$ in recimo, da je $\ls \a, \b \rs = 0$. Potem je
+$$|\a + \b|^2 ~=~ |\a|^2 + |\b|^2.$$
+
+\end{izrek}
+\vspace{0.5cm}
+
+\begin{definicija}[Pravokotna projekcija]
+
+Naj bosta $\a,\b \in \R^n$. \textit{Pravokotna projekcija} $\b$ na $\a$ je vektor
+$$\text{proj}_\a{\b} ~=~ \frac{\ls \a, \b \rs}{|\a|^2} \cdot \a.$$
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{trditev}
+
+Naj bosta $\a,\b \in \R^n$. Potem je $(\b - \text{proj}_\a{\b})$ pravokoten na $\a$.
+
+\end{trditev}
+\vspace{0.5cm}
+
+\begin{definicija}[Vektorski produkt]
+
+Naj bosta \hbox{$\a=(x_1, y_1, z_1)^\T,\b=(x_2, y_2, z_2)^\T \in \R^3$}. \textit{Vektorski produkt} vektorjev $\a$ in $\b$ je vektor
+$$\a \times \b ~=~ \begin{bmatrix}
+y_1 z_2 - y_2 z_1 \\
+z_1 x_2 - z_2 x_1 \\
+x_1 y_2 - x_2 y_1
+\end{bmatrix}.$$
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{definicija}
+
+Naj bodo $\a,\b,\c \in \R^3$. \textit{Mešani produkt} $\a,\b,\c$ je število
+$$[\a,\b,\c] ~=~ (\a\times\b)\cdot\c.$$
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{trditev}
+
+Naj bodo $\a,\b,\c \in \R^3$, $\alpha \in \R$:
+\begin{enumerate}
+	\item $\a\times\b ~=~ -(\b\times\a)$ ~~(antikomutativnost)
+	\item $\a\times\a ~=~ \0$
+	\item $(\a + \b)\times\c ~=~ \a\times\c + \b\times\c$
+	\item $(\alpha\a)\times\b ~=~ \alpha(\a\times\b)$
+	\item $(\a\times\b)\times\c ~=~ (\a\cdot\c)\b - (\b\cdot\c)\a$
+\end{enumerate}
+
+\end{trditev}
+\vspace{0.5cm}
+
+\begin{trditev}
+
+Naj bodo $\a,\b,\c \in \R^3$. Potem
+$$[\a,\b,\c] ~=~ -[\b,\a,\c] ~=~ -[\c,\b,\a] ~=~ -[\a,\c,\b].$$
+Če v $[\a,\b,\c]$ zamenjamo poljubna vektorja se spremeni le predznak.
+
+\end{trditev}
+\vspace{0.5cm}
+
+\begin{trditev}[Lagrange]
+
+Naj bosta $\a,\b \in \R^3$. Potem velja
+$$|\a\times\b|^2 + (\a\cdot\b) ~=~ |\a|^2 \cdot |\b|^2.$$
+
+\end{trditev}
+\vspace{0.5cm}
+
+\begin{posledica}
+
+Naj bosta $\a,\b \in \R^3$. Potem je $|\a\times\b|$ enaka ploščini \textit{paralelograma}, ki ga oklepata $\a$ in $\b$.
+
+\end{posledica}
+\vspace{0.5cm}
+
+\begin{trditev}
+
+$\a\times\b$ je pravokoten na $\a$ in $\b$.
+
+\end{trditev}
+\vspace{0.5cm}
+
+\pagebreak
+
+% #################################################################################################
+
+\section{Matrike}
+\vspace{0.5cm}
+
+% *************************************************************************************************
+
+\subsection{Uvod}
+\vspace{0.5cm}
+
+\begin{definicija}[Matrika]
+
+\textit{Matrika} je pravokotna tabela (realnih ali kompleksnih) številk.
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{trditev}
+
+Naj bodo $A,B,C \in \R^{m \times n}$ in $\alpha,\beta \in \R$. Potem velja
+\begin{enumerate}
+	\item $A+B ~=~ B+A$ ~~(komutativnost)
+	\item $(A+B)+C ~=~ A+(B+C)$ ~~(asociativnost)
+	\item $A+0 ~=~ 0+A ~=~ A$
+	\item $A+(-A) ~=~ (-A)+A ~=~ 0$
+	\item $\alpha(A+B) ~=~ \alpha A + \alpha B$
+	\item $(\alpha + \beta)A ~=~ \alpha A + \beta A$
+	\item $\alpha(BA) ~=~ (\alpha B)A$
+	\item $1 \cdot A ~=~ A$
+\end{enumerate}
+
+\end{trditev}
+\vspace{0.5cm}
+
+\begin{definicija}
+
+Matrikam v $R^{n \times n}$ pravimo \textit{kvadratne matrike}.
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{definicija}[Transponirana matrika]
+
+Naj bo $A \in \R^{m \times n}$ matrika. \textit{Transponiranka} matrike $A$ je matrika $A^\T \in \R^{n \times m}$, za katero velja:
+$$(i,j)\text{-ti element}~A^\T ~=~ (j,i)\text{-ti element}~A.$$
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{trditev}
+
+Naj bosta $A,B \in \R^{m \times n}$, $\alpha \in \R$:
+\begin{enumerate}
+	\item $(A^\T)^\T ~=~ A$
+	\item $(A+B)^\T ~=~ A^\T + B^\T$
+	\item $(\alpha A)^\T ~=~ \alpha A^\T$
+\end{enumerate}
+
+\end{trditev}
+\vspace{0.5cm}
+
+\begin{definicija}
+
+Naj bo $A = [a_{ij}] \in \R^{m \times n}$, $B = [b_{ij}] \in \R^{n \times p}$. Potem je $A \cdot B \in \R^{m \times p}$ matrika, ki ima na $(i,j)$-tem mestu element
+$$c_{ij} ~=~ a_{i1} b_{1j} + \ldots + a_{in} b_{nj} ~=~ \sum_{k=1}^n a_{ik} \cdot b_{kj}.$$
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{trditev}
+~\\
+\begin{enumerate}
+
+\item Naj bodo $A \in \R^{m \times n}$, $B \in \R^{n \times p}$ in $C \in \R^{p \times s}$. Potem velja
+$$A(BC) ~=~ (AB)C.$$
+
+\item Naj bo $A \in \R^{m \times n}$ in  $B,C \in \R^{n \times p}$. Potem velja
+$$A(B+C) ~=~ AB + AC.$$
+
+\item Naj bosta $A,B \in \R^{m \times n}$ in $C \times \R^{n \times p}$. Potem velja
+$$(A+B)C = AC + BC.$$
+
+\item Naj bo $A \in \R^{m \times n}$ in $B \in \R^{n \times p}$. Potem velja
+$$(AB)^\T ~=~ B^\T A^\T.$$
+
+\end{enumerate}
+
+\end{trditev}
+\vspace{0.5cm}
+
+% *************************************************************************************************
+
+\subsection{Kvadratne matrike}
+\vspace{0.5cm}
+
+\begin{definicija}[Kvadratne matrike]
+
+Naj bo $A = [a_{ij}]_{i,j=1}^n \in \R^{n \times n}$ Pravimo je, da je $A$
+\begin{enumerate}
+
+\item \textit{diagonalna}, če je oblike
+$$A ~=~ \begin{bmatrix}
+* & ~ & ~ & ~ & ~ \\
+~ & * & ~ & ~ & ~ \\
+~ & ~ & * & ~ & ~ \\
+~ & ~ & ~ & \ddots & ~ \\
+~ & ~ & ~ & ~ & *
+\end{bmatrix}$$
+oziroma $a_{ij} = 0 ~\forall i \neq j$.
+
+\item \textit{zgornjetrikotna}, če je oblike
+$$A ~=~ \begin{bmatrix}
+* & * & * & \cdots & * \\
+~ & * & * & \cdots & * \\
+~ & ~ & * & \cdots & * \\
+~ & ~ & ~ & \ddots & \vdots \\
+~ & ~ & ~ & ~ & *
+\end{bmatrix}$$
+oziroma $a_{ij} = 0 ~\forall i>j$.
+
+\item \textit{spodnjetrikotna}, če je oblike
+$$A ~=~ \begin{bmatrix}
+* & ~ & ~ & ~ & ~ \\
+* & * & ~ & ~ & ~ \\
+* & * & * & ~ & ~ \\
+\vdots & \vdots & \vdots & \ddots & ~ \\
+* & * & * & \cdots & *
+\end{bmatrix}$$
+oziroma $a_{ij} = 0 ~\forall i<j$, oziroma $A^\T$ mora biti \textit{zgornjetrikotna}.
+
+\end{enumerate}
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{definicija}[Identična matrika]
+
+Kvadratni matriki oblike
+$$I ~=~ \begin{bmatrix}
+1 & ~ & ~ & ~ & ~ \\
+~ & 1 & ~ & ~ & ~ \\
+~ & ~ & 1 & ~ & ~ \\
+~ & ~ & ~ & \ddots & ~ \\
+~ & ~ & ~ & ~ & 1
+\end{bmatrix}$$
+pravimo \textit{identična matrika}.
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{trditev}
+
+Naj bo $A$ \textit{kvadratna} matrika. Potem je
+$$A \cdot I ~=~ I \cdot A ~=~ A.$$
+
+\end{trditev}
+\vspace{0.5cm}
+
+\begin{trditev}
+
+$A,B \in \R^{n \times n}$.
+\begin{enumerate}
+	\item Če sta $A$ in $B$ \textit{diagonalni}, sta tudi $A+B$ in $AB$ \textit{diagonalni}.
+	\item Če sta $A$ in $B$ \textit{zgornjetrikotni}, sta tudi $A+B$ in $AB$ \textit{zgornjetrikotni}.
+	\item Če sta $A$ in $B$ \textit{spodnjetrikotni}, sta tudi $A+B$ in $AB$ \textit{spodnjetrikotni}.
+\end{enumerate}
+
+\end{trditev}
+\vspace{0.5cm}
+
+\begin{definicija}
+
+Naj bo $A \in \R^{n \times n}$. Pravimo, da je $A$ \textit{obrnljiva}, če obstaja $B \in \R^{n \times n}$, da je 
+$$AB ~=~ BA ~=~ I.$$
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{trditev}
+
+Naj bo $A$ \textit{obrnljiva} matrika in $B$ ter $C$ taki matriki, da velja
+\begin{align*}
+AB ~&=~ BA ~=~ I, \\
+AC ~&=~ CA ~=~ I.
+\end{align*}
+Potem je $B=C$.
+
+\end{trditev}
+\vspace{0.5cm}
+
+\begin{definicija}[Inverz matrike]
+
+Naj bo $A$ \textit{obrnljiva} matrika. Matriki $B$, za katero velja $AB = BA = I$, pravimo \textit{inverz} matrike $A$;
+$$B = A^{-1}.$$
+Velja:
+$$A A^{-1} ~=~ A^{-1} A ~=~ I.$$
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{trditev}
+
+Naj bosta $A,B \in \R^{n \times n}$ \textit{obrnljivi} matriki. Potem je $AB$ \textit{obrnljiva} matrika, velja
+$$(AB)^{-1} ~=~ B^{-1}A^{-1}.$$
+
+\end{trditev}
+\vspace{0.5cm}
+
+\begin{opomba}
+
+Če sta $A$ in $B$ \textit{obrnljivi}, $A+B$ ni nujno \textit{obrnljiva}.
+
+\end{opomba}
+\vspace{0.5cm}
+
+\begin{definicija}[Simetrična matrika]
+
+Naj bo $A$ \textit{kvadratna} matrika. Pravimo, da je $A$ \textit{simetrična}, je če 
+$$A^\T = A.$$
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{trditev}
+
+Naj bosta $A,B \in \R^{n \times n}$ \textit{simetrični} matriki, $\alpha, \beta \in \R$. Potem je tudi $\alpha A + \beta B$ \textit{simetrična} matrika.
+
+\end{trditev}
+\vspace{0.5cm}
+
+\begin{definicija}[Pozitivno definitna matrika]
+
+Naj bo $A \in \R^{n \times n}$ \textit{simetrična}. Pravimo, da je $A$ \textit{pozitivno definitna}, če $\forall \x \in \R^n$, $\x \neq 0$, velja
+$$\ls A\x, \x \rs ~>~ 0.$$ 
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{trditev}
+
+Naj bo $A = \begin{bmatrix}
+a & b \\
+b & c
+\end{bmatrix}$. $A$ je \textit{pozitivno definitna} $\iff$ $a>0$ in $ac - b^2 > 0$.
+
+\end{trditev}
+\vspace{0.5cm}
+
+% *************************************************************************************************
+
+\subsection{Vrstična kanonična forma matrike}
+\vspace{0.5cm}
+
+\begin{definicija}
+
+Naj bo $A \in \R^{m \times n}$. Na $A$ bomo izvajali \textit{elementarne transformacije} treh tipov:
+\begin{itemize}
+\item Tip I: neki vrstici matrike prištejemo večkratnik neke druge vrstice.
+\item Tip II: neko vrstico matrike pomnožimo z neničelnim številom.
+\item Tip III: menjava dveh vrstic.
+\end{itemize}
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{definicija}[Rang matrike]
+
+Naj bo $A$ matrika. Številu pivotov v vrstični kanonični formi matrike $A$ pravimo \textit{rang} matrike $A$.
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{definicija}
+~\\
+\begin{enumerate}
+
+\item Naj bo $E_{ij}(\alpha)$, $i \neq j$, \textit{kvadratna} matrika, ki ima po diagonali $1$, na $(i,j)$-tem mestu je $\alpha$, drugje so 0. Tem matrikam pravimo \textit{elementarne matrike tipa} I.
+
+\item Naj bo $\alpha \neq 0$. Naj bo $E_i(\alpha)$ \textit{kvadratna} matrika, ki ima na $i$-tem mestu na diagonali $\alpha$, drugje na diagonali $1$, povsod drugod pa $0$. Tem matrikam pravimo \textit{elementarne matrike tipa} II.
+
+\item $P_{ij}$ naj bo \textit{kvadratna} matrika, ki jo dobimo, če v $I$ zamenjamo $i$-to in $j$-to vrstico. Tem matrikam pravimo \textit{elementarne matrike tipa} III.
+
+\end{enumerate}
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{trditev}
+
+Elementarne matrike tipov I-III so vse \textit{obrnljive}.
+
+\end{trditev}
+\vspace{0.5cm}
+
+% *************************************************************************************************
+
+\subsection{Sistemi linearnih enačb}
+\vspace{0.5cm}
+
+\begin{trditev}
+
+Naj bo $A \in \R^{m \times n}$, $\b \in \R^m$. $P \in \R^{m \times m}$ naj bo \textit{obrnljiva} matrika. Potem imata sistema 
+$$A\x ~=~ \b ~~~\text{in}~~~ (PA)\y ~=~ P\b$$
+enako množico rešitev.
+
+\end{trditev}
+\vspace{0.5cm}
+
+\begin{izrek}
+
+Naj bo $A \in \R^{n \times n}$. Potem je $A$ \textit{obrnljiva} $\iff$ $\rang{A} = n$.
+
+\end{izrek}
+\vspace{0.5cm}
+
+% *************************************************************************************************
+
+\subsection{Permutacije}
+\vspace{0.5cm}
+
+\begin{definicija}[Permutacija]
+
+\textit{Permutacija} je \textit{bijektivna} preslikava, ki slika 
+$$\sigma: \{1, 2, \ldots, n\} \rightarrow \{1, 2, \ldots, n\}, ~~~n \in \N.$$
+Oznaka:
+$$\sigma ~=~ \begin{pmatrix}
+1 & 2 & \ldots & n \\
+\sigma(1) & \sigma(2) & \ldots & \sigma(n)
+\end{pmatrix}.$$
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{definicija}
+
+Naj bosta $\sigma,\tau$ permutaciji množice $\{1,2,\ldots, n\}$. \textit{Produkt} $\sigma\tau$ je kompozitum $\sigma \circ \tau$.
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{opomba}
+
+Produkt permutacij ni nujno \textit{komunikativen}, je pa \textit{asociativen}.
+
+\end{opomba}
+\vspace{0.5cm}
+
+\begin{definicija}
+
+Množico vseh permutacij množice $\{1, 2, \ldots, n\}$ označimo z $S_n$.
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{opomba}
+
+\begin{align*}
+|S_n| ~&=~ \text{število bijekcij}~ \{1, 2, \ldots, n\} \rightarrow \{1, 2, \ldots, n\}. \\
+&=~ n!
+\end{align*}
+
+\end{opomba}
+\vspace{0.5cm}
+
+\begin{definicija}
+
+Naj bo $\sigma \in S_n$, $i,j \in \{1, 2, \ldots, n\}$. Pravimo, da je par $(i, j)$ \textit{inverzija} za $\sigma$, če velja $i<j$ in $\sigma(i) > \sigma(j)$. Številu vseh inverzij permutacije $\sigma$ pravimo \textit{indeks} permutacije $\sigma$:
+$$\ind{(\sigma)}.$$
+Številu $$\sgn(\sigma) ~=~ (-1)^{\ind{(\sigma)}}$$
+pravimo \textit{signatura} permutacije $\sigma$.
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{trditev}
+
+Naj bo $\sigma = \begin{pmatrix}
+1 & 2 & \ldots & n \\
+s_1 & s_2 & \ldots & s_n
+\end{pmatrix}$.
+
+\begin{enumerate}
+
+\item Če v $\sigma$ zamenjamo poljubna $s_i$ in $s_j$ in s tem dobimo permutacijo $\tilde{\sigma}$, potem je
+$$\sgn(\tilde{\sigma}) ~=~ -\sgn(\sigma).$$
+
+\item $\sgn(\sigma^{-1}) ~=~ \sgn(\sigma)$
+
+\end{enumerate}
+
+\end{trditev}
+\vspace{0.5cm}
+
+% *************************************************************************************************
+
+\subsection{Determinatne}
+\vspace{0.5cm}
+
+\begin{definicija}
+
+Naj bo $A = [a_{ij}]_{i,j=1}^n \in \R^{n \times n}$. \textit{Determinanta} matrike $A$ je
+$$\det A ~=~ \sum_{\sigma \in S_n} \sgn(\sigma) \cdot a_{1,\sigma(1)} \cdot \ldots \cdot a_{n,\sigma(n)}.$$
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{trditev}
+
+Naj bo $A \in \R^{n \times n}$. Potem je 
+$$\det A^\T ~=~ \det A.$$
+
+\end{trditev}
+\vspace{0.5cm}
+
+\begin{trditev}
+
+Naj bo $A \in \R^{n \times n}$ in $\tilde{A}$ matrika, ki jo dobimo, če v $A$ zamenjamo dve vrstici. Potem je
+$$\det \tilde{A} ~=~ -\det A.$$
+
+\end{trditev}
+\vspace{0.5cm}
+
+\begin{opomba}
+
+Elementarna transformacija tipa II na matriki spremeni le predznak determinante.
+
+\end{opomba}
+\vspace{0.5cm}
+
+\begin{posledica}
+
+Naj bo $A \in \R^{n \times n}$ in $\tilde{A}$ matrika, ki jo dobimo, če v $A$ zamenjamo dva stolpca. Potem je
+$$\det \tilde{A} ~=~ -\det A.$$
+
+\end{posledica}
+\vspace{0.5cm}
+
+\begin{opomba}
+
+Če se neka lastnost determinante nanaša na vrstice matrike, enaka lastnost velja tudi za stolpce matrike.
+
+\end{opomba}
+\vspace{0.5cm}
+
+\begin{trditev}
+
+Če sta v \textit{kvadratni} matriki $A$ dve vrstici enaki, potem je 
+$$\det A ~=~ 0.$$
+
+\end{trditev}
+\vspace{0.5cm}
+
+\begin{trditev}
+
+$$\begin{vmatrix}
+a_{11} & \cdots & a_{1n} \\
+\vdots & ~ & \vdots \\
+b_{i1} + c_{i1} & \cdots & b_{in} + c_{in} \\
+\vdots & ~ & \vdots \\
+a_{n1} & \cdots & a_{nn}
+\end{vmatrix} ~=~ \begin{vmatrix}
+a_{11} & \cdots & a_{1n} \\
+\vdots & ~ & \vdots \\
+b_{i1} & \cdots & b_{in} \\
+\vdots & ~ & \vdots \\
+a_{n1} & \cdots & a_{nn}
+\end{vmatrix} + \begin{vmatrix}
+a_{11} & \cdots & a_{1n} \\
+\vdots & ~ & \vdots \\
+c_{i1} & \cdots &  c_{in} \\
+\vdots & ~ & \vdots \\
+a_{n1} & \cdots & a_{nn}
+\end{vmatrix}$$
+
+\end{trditev}
+\vspace{0.5cm}
+
+\begin{trditev}
+
+$$\begin{vmatrix}
+a_{11} & \cdots & a_{1n} \\
+\vdots & ~ & \vdots \\
+k a_{i1} & \cdots & k a_{in} \\
+\vdots & ~ & \vdots \\
+a_{n1} & \cdots & a_{nn}
+\end{vmatrix} ~=~ k\begin{vmatrix}
+a_{11} & \cdots & a_{1n} \\
+\vdots & ~ & \vdots \\
+a_{i1} & \cdots & a_{in} \\
+\vdots & ~ & \vdots \\
+a_{n1} & \cdots & a_{nn}
+\end{vmatrix}$$
+
+\end{trditev}
+\vspace{0.5cm}
+
+\begin{opomba}
+
+Elementarna transformacija tipa II na matriki (množenje vrstice s $k$) determinanto spremeni za faktor $k$.
+
+\end{opomba}
+\vspace{0.5cm}
+
+\begin{trditev}
+
+Če v matriki $A$ večkratnik kake vrstice prištejemo k neki drugi vrstici je determinanta tako dobljene matrike enaka $\det A$.
+
+\end{trditev}
+\vspace{0.5cm}
+
+\begin{definicija}
+
+Naj bo $A \in \R^{n \times n}$. Determinanti matrike, ki jo dobimo, če odstranimo $i$-to vrstico in $j$-ti stolpec, pravimo $(i,j)$-ti \textit{minor} matrike $A$, oznaka $m_{ij}$. Številu
+$$k_{ij} ~=~ (-1)^{i+j} m_{ij}$$
+pravimo $(i,j)$-ti \textit{kofaktor} matrike $A$.
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{izrek}[Razvoj determinante po vrstici]
+
+Naj bo $A \in \R^{n \times n}$ in $i \in \{1, 2, \ldots, n\}$. Potem je
+$$\det A ~=~ a_{i1} k_{i1} + \ldots + a_{in} k_{in}.$$
+
+\end{izrek}
+\vspace{0.5cm}
+
+\begin{trditev}
+
+Determinanta \textit{zgornjetrikotne}/\textit{spodnjetrikotne} matrike je enaka produktu njenih diagonalnih elementov.
+
+\end{trditev}
+\vspace{0.5cm}
+
+\begin{izrek}
+
+Naj bosta $A,B \in \R^{n \times n}$. Potem je
+$$\det AB ~=~ \det A + \det B.$$
+
+\end{izrek}
+\vspace{0.5cm}
+
+\begin{definicija}
+
+Naj bo $A \in \R^{n \times n}$. Matriki
+$$\tilde{A} ~=~ \begin{bmatrix}
+k_{11} & \cdots & k_{1n} \\
+\vdots & \ddots & \vdots \\
+k_{n1} & \cdots & k_{nn}
+\end{bmatrix}$$
+kjer je $k_{ij}$ $(i,j)$-ti kofaktor, pravimo \textit{prirejena matrika} matriki $A$.
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{izrek}
+
+Naj bo $A \in \R^{n \times n}$. Potem je $A$ \textit{obrnljiva} $\iff$ $\det A \neq 0$. V slednjem primeru velja
+$$A^{-1} ~=~ \frac{1}{\det A} \tilde{A}^\T.$$
+
+\end{izrek}
+\vspace{0.5cm}
+
+\begin{izrek}[Cramerjevo pravilo]
+
+Dan je sistem $n$ linearnih enačb z $n$ neznankimi
+$$A\x ~=~ \b, ~~~A \in \R^{n \times n}, ~~~\b,\x \in \R^n.$$
+Recimo, da je $A$ \textit{obrnljiva}. Potem je
+$$x_i ~=~ \frac{\det A_i}{\det A},$$
+pri čemer je $A_i$ matrika, ki jo dobimo, če v $A$ $i$-ti stolpec nadomestimo s stolpec $\b$.
+
+\end{izrek}
+\vspace{0.5cm}
+
+% *************************************************************************************************
+
+\pagebreak
+
+% #################################################################################################
+
+\section{Algebrajske strukture}
+\vspace{0.5cm}
+
+% *************************************************************************************************
+
+\subsection{Uvod}
+\vspace{0.5cm}
+
+\begin{definicija}[Operacija]
+
+Naj bo $\M$ \textit{neprazna} množica. \textit{Operacija} na množici $\M$ je  preslikava
+$$\circ \M\times \M \longrightarrow \M.$$
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{opomba}
+
+Imamo operacijo
+\begin{align*}
+\circ\M\times\M &\rightarrow \M \\
+(a,b) &\mapsto a \circ b;
+\end{align*}
+vpeljemo oznako 
+$$a \circ b ~=~ \circ(a, b).$$
+
+\end{opomba}
+\vspace{0.5cm}
+
+\begin{definicija}
+
+Naj bo $\M$ množica z operacijo $\circ$.
+\begin{enumerate}
+	
+\item Operacija $\circ$ je \textit{asociativna}, če velja
+$$(a \circ b) \circ c ~=~ a \circ (b \circ c), ~~~\forall a,b,c \in \M.$$
+
+\item Operacija $\circ$ je \textit{komutativna}, če velja
+$$a \circ b ~=~ b \circ a, ~~~\forall a,b \in \M.$$	
+
+\item Element $e \in \M$ je \textit{enota} za operacijo $\circ$, če velja
+$$e \circ a ~=~ a \circ e ~=~ a, ~~~\forall a \in \M.$$
+
+\item Recimo, da je $e$ \textit{enota} za operacijo $\circ$ na množici $\M$. Izberemo $a \in \M$. Element $b \in \M$ je \textit{inverz} elementa $a$, če velja
+$$a \circ b ~=~ b \circ a~=~ e.$$ 
+	
+\end{enumerate}
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{definicija}[Polgrupa, monoid, grupa]
+
+Naj bo $\M$ množica z operacijo $\M$.
+\begin{enumerate}
+	\item $(M, \circ)$ je \textit{polgrupa}, če je operacija $\circ$ \textit{asociativna}.
+	\item $(M, \circ)$ je \textit{monoid}, če je \textit{polgrupa} in ima \textit{enoto}.
+	\item $(M, \circ)$ je \textit{grupa}, če je \textit{monoid} in ima $\forall a \in \M$ \textit{inverz}.
+\end{enumerate}
+Če je operacija \textit{komutativna}, govorimo o \textit{komutativni polgrupi}, \textit{komutativnem monoidu} ter \textit{komutativni} (oz. \textit{abelovi}) \textit{grupi}.
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{definicija}
+
+Množico vseh \textit{obrnljivih} $n \times n$ matrik z realnimi koeficienti definiramo kot
+$$\mathit{GL}_n(\R) ~=~ \{A \in \R^{n \times n} \mid \det A \neq 0\}.$$
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{definicija}
+
+Specialno linearno grupo $n \times n$ matrik definiramo kot
+$$\mathit{SL}_n(\R) ~=~ \{A \in \mathit{GL}_n(\R) \mid \det A = 1\}.$$
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{definicija}
+
+Naj bo $\M$ množica z operacijo $\circ$ in $\NN \subseteq \M.$ Pravimo, da je $\NN$ \textit{zaprta} za operacijo $\circ$, če 
+$$\forall a, b \in \NN: ~a \circ b \in \NN.$$
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{definicija}[Podpolgrupa]
+
+Naj bo $(\M, \circ)$ \textit{polgrupa}, $\NN \subseteq \M$. Pravimo, da je $\NN$ \textit{podpolgrupa} v $\M$, če je $\NN$ \textit{zaprta} za operacijo.
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{opomba}
+
+Če je $\NN$ \textit{podpolgrupa} v $(\M, \circ)$, se \textit{asociativnost} avtomatično podeduje in je $(\NN, \circ)$ tudi \textit{polgrupa}.
+
+\end{opomba}
+\vspace{0.5cm}
+
+\begin{definicija}[Podgrupa]
+
+Naj bo $(\M, \circ)$ \textit{grupa} in $\NN \subseteq \M$. Pravimo, da je $\NN$ \textit{podgrupa} v $\M$, če je
+\begin{enumerate}
+	\item $\NN$ \textit{zaprta} za operacijo $\circ$,
+	\item $e \in \NN$,
+	\item v primeru ko je $a \in \NN$, tudi njegov inverz v $\NN$.
+\end{enumerate}
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{trditev}
+~
+\begin{enumerate}
+	\item Naj bo $(\M, \circ)$ \textit{monoid}. Potem je \textit{enota} v $\M$ enolično določena.
+	\item Naj bo $(\M, \circ)$ \textit{grupa}. Potem ima $\forall a \in \M$ enolično določen inverz $a^{-1} \in \M$.
+\end{enumerate}
+
+\end{trditev}
+\vspace{0.5cm}
+
+\begin{trditev}
+
+Naj bo $(\M, \circ)$ \textit{grupa} in $\NN \subseteq \M$, $\NN \neq \emptyset$. Potem je $\NN$ \textit{podgrupa} v $\M$ natanko tedaj, ko velja:
+$$\forall a, b \in \NN: ~a \circ b^{-1} \in \NN.$$
+
+\end{trditev}
+\vspace{0.5cm}
+
+\begin{definicija}[Homomorfizem]
+
+Naj bosta $(\M, \circ)$ in $(\NN, *)$ \textit{(pol)grupi}. Preslikava $f: \M \rightarrow \NN$ je \textit{homomorfizem} (pol)grup, če
+$$f(a \circ b) ~=~ f(a) * f(b), ~~~\forall a, b \in \M.$$
+\begin{itemize}
+	\item \textit{Injektivnim} homomorfizmom pravimo \textit{monomorfizmi}.
+	\item \textit{Surjektivnim} homomorfizmom pravimo \textit{epimorfizmi}.
+	\item \textit{Bijektivnim} homomorfizmom pravimo \textit{izomorfizmi}.
+\end{itemize}
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{definicija}
+
+Naj bosta $(M, \circ)$ in $(\NN, *)$ \textit{(pol)grupi}. Pravimo, da sta $\M$ in $\NN$ \textit{izomorfni}, če obstaja izomorfizem $f: \M \rightarrow \NN$. Oznaka:
+$$\M \cong \NN.$$
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{definicija}[Jedro, slika]
+
+Naj bo $f:(\M, \circ) \rightarrow (\NN, *)$ \textit{homomorfizem grup}.
+\begin{itemize}
+	\item Jedro homomorfizma:
+	$$\ker f ~=~ \{a \in \M \mid f(a) = e_\NN\}$$
+	\item Slika homomorfizma:
+	$$\im f ~=~ \{f(a) \mid a \in \M\}$$
+\end{itemize}
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{izrek}
+
+Naj bo $f: \M \rightarrow \NN$ \textit{homomorfizem grup}.
+\begin{enumerate}
+	\item $f(e_\M) ~=~ e_\NN$
+	\item $f(a^{-1}) ~=~ f(b)^{-1} ~\forall a \in \M$
+	\item $\ker f$ je \textit{polgrupa} v $\M$
+	\item $\im f$ je \textit{polgrupa} v $\M$
+	\item $f$ je \textit{monomorfizem} $\iff$ $\ker f = \{e_\M\}$
+	\item $f$ je \textit{epimorfizem} $\iff$ $\im f = \NN$
+\end{enumerate}
+
+\end{izrek}
+\vspace{0.5cm}
+
+% *************************************************************************************************
+
+\subsection{Kolobarji in obsegi (polja)}
+\vspace{0.5cm}
+
+\begin{definicija}[Kolobar]
+
+Naj bo $\K$ \textit{neprazna} množica, opremljena z dvema operacijama:
+\begin{align*}
++&: \K\times\K \rightarrow \K \\
+\cdot&: \K\times\K \rightarrow \K
+\end{align*}
+$(\K,+,\cdot)$ je \textit{kolobar}, če velja:
+\begin{enumerate}
+
+\item $(\K,+)$ je \textit{abelova grupa}; enoto označimo z $0$, inverz elementa $a \in \K$ za + označimo z $-a$.
+
+\item $(\K,\cdot)$ je \textit{polgrupa}.
+
+\item Leva in desna distributivnost:
+\begin{align*}
+a\cdot (b+c) ~&=~ a \cdot b + a \cdot c \\
+(b+c)\cdot a ~&=~ b \cdot a + c \cdot a \\
+\forall a,b,c &\in \K
+\end{align*}
+Če je množenje \textit{komutativna} operacija, pravimo, da je $(\K,+,\cdot)$ \textit{komutativen kolobar}. Če je $(\K,\cdot)$ \textit{monoid}, pravimo, da je $(\K,+,\cdot)$ \textit{kolobar z enico}; enoto za množnje označimo z $1$.
+
+\end{enumerate}
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{definicija}
+
+Naj bo $(\K,+,\cdot)$ \textit{komutativen kolobar} z enico. Pravimo, da je $\K$ \textit{obseg} (\textit{polje}), če je $(\K\setminus\{0\},\cdot)$ \textit{grupa}. Vsak neničelen element polja $\K$ ima torej inverz za množenje.
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{definicija}
+
+Naj bo $(\K,+,\cdot)$ \textit{kolobar} in $\L \subseteq \K$, $\L \neq \emptyset$. Pravimo, da je $\L$ \textit{podkolobar} v $\K$, če je $\L$ tudi \textit{kolobar} za isti operaciji.
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{definicija}
+
+Naj bosta $(\K,+_1,\cdot_1)$ in $(\L,+_2,\cdot_2)$ \textit{kolobarja}. $f:\K\rightarrow\L$ je \textit{homomorfizem kolobarjev}, če
+\begin{align*}
+f(x +_1 y) ~&=~ f(x) +_2 f(y) \\
+f(x \cdot_1 y) ~&=~ f(x) \cdot_2 f(y) \\
+\forall x,y &\in \K \\
+\ker f ~&=~ \{x \in \K \mid f(x) ~=~ 0_\L\} \\
+\im f ~&=~ \{f(x) \mid x \in \K\}
+\end{align*}
+
+\end{definicija}
+\vspace{0.5cm}
+
+% *************************************************************************************************
+
+\subsection{Vektorski prostori}
+\vspace{0.5cm}
+
+\begin{definicija}[Vektorski prostor]
+
+Naj bo $V \neq \emptyset$ neprazna množica in $O$ obseg. $V$ je \textit{vektorski prostor} nad obsegom $O$, če imamo operacijo
+\begin{align*}
++: V \times V &\rightarrow V \\
+(\u,\vv) &\mapsto \u + \vv
+\end{align*}
+in preslikavo
+\begin{align*}
+\cdot: O \times V &\rightarrow V \\
+(\lambda, \vv) &\mapsto \lambda \cdot \vv
+\end{align*}
+za kateri veljajo:
+\begin{enumerate}
+	\item $(V,+)$ je \textit{abelova grupa}; enota za $+$ je $O$, inverz elementa $\vv \in V$ za seštevanje označimo z $-\vv$.
+	\item $\alpha(\u+\vv) ~=~ \alpha\u + \alpha\vv$, ~~$\alpha \in O$, $\u,\vv \in V$
+	\item $(\alpha + \beta)\u ~=~ \alpha\u + \beta\u$, ~~$\alpha,\beta \in O$, $\u \in V$
+	\item $(\alpha \cdot \beta) \u ~=~ \alpha (\beta \u)$, ~~$\alpha,\beta \in O$, $\u \in V$
+	\item $1 \cdot \u ~=~ \u$
+\end{enumerate}
+Elementi $V$ so \textit{vektorji}, elementi $O$ pa \textit{skalarji}.
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{definicija}[Podprostor]
+
+Naj bo $V$ \textit{vektorski prostor} nad $O$, naj bo $U \subseteq V$, $U \neq \emptyset$. Potem je $U$ \textit{podprostor} v $V$, če velja:
+\begin{enumerate}
+	\item $U$ je \textit{podgrupa} za $+$ v $V$:
+	$$\forall \u_1, \u_2 \in U: ~\u_1 - \u_2 \in U$$
+	\item $$\forall \u \in U ~\forall \alpha \in O: ~\lambda\u \in U$$
+\end{enumerate}
+Oznaka:$$U \leq V$$
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{definicija}
+
+Naj bo $V$ \textit{vektorski prostor} nad $O$, $\vv_1,\ldots,\vv_n \in V$, \hbox{$\lambda_1,\ldots,\lambda_n \in O$.} Izrazu 
+$$\lambda_1 \vv_1 + \ldots + \lambda_n \vv_n$$
+pravimo \textit{linearna kombinacija} vektorjev $\vv_1,\ldots,\vv_n$.
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{trditev}
+
+Naj bo $V$ \textit{vektorski prostor} nad $O$, $U \subseteq V$, $U \neq \emptyset$. Potem je $U \leq V$ $\iff$ $\forall \u_1, \u_2 \in U, ~\forall\alpha_1, \alpha_2 \in O: ~\alpha_1 \u_1 + \alpha_2 \u_2 \in U$.
+
+\end{trditev}
+\vspace{0.5cm}
+
+\begin{definicija}[Linearna ogrinjača]
+
+Naj bo $V$ \textit{vektorski prostor} nad $O$ in $\vv_1,\ldots,\vv_n \in V$. Množici
+$$\Lin\{\vv_1,\ldots,\vv_n\} ~:=~ \{\lambda_1\vv_1 + \ldots + \lambda_n\vv_n \mid \lambda_1,\ldots,\lambda_n \in O\}$$
+pravimo \textit{linearna ogrinjača} (\textit{lupina}) vektorjev $\vv_1,\ldots,\vv_n$.
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{trditev}
+
+Naj bo $V$ \textit{vektorski prostor} nad $O$ in $\vv_1,\ldots,\vv_n \in V$:
+\begin{enumerate}
+	\item $\Lin\{\vv_1,\ldots,\vv_n\}$ je \textit{podprostor} v $V$
+	\item $\Lin\{\vv_1,\ldots,\vv_n\}$ je najmanjši \textit{podprostor} v $V$, ki vsebuje $\vv_1,\ldots,\vv_n$
+\end{enumerate} 
+Če je $U \leq V$, ki vsebuje $\vv_1,\ldots,\vv_n$, potem 
+$$\Lin\{\vv_1,\ldots,\vv_n\} \subseteq U.$$
+
+\end{trditev}
+\vspace{0.5cm}
+
+% *************************************************************************************************
+
+\subsection{Baza vektorskega prostora}
+\vspace{0.5cm}
+
+\begin{definicija}[Linearna neodvisnost]
+
+Naj bo $V$ \textit{vektorski prostor} nad obsegom $O$. Recimo, da so vektorji $\vv_1,\ldots,\vv_n \in V$ \textit{linearno neodvisni}, če velja
+$$\alpha_1\vv_1 + \ldots + \alpha_n\vv_n ~=~ 0 ~~~\Longrightarrow~~~ \alpha_1 = \ldots = \alpha_n = 0.$$
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{definicija}[Baza]
+
+Naj bo $V$ \textit{vektorski prostor} nad $O$ in $\vv_1,\ldots,\vv_n \in V$. Množica $\{\vv_1,\ldots,\vv_n\}$ je \textit{baza} prostora $V$, če
+\begin{enumerate}
+	\item $\Lin\{\vv_1,\ldots,\vv_n\} = V$; vsak vektor $\vv \in V$ je linearna kombinacija vektorjev $\vv_1,\ldots,\vv_n$
+	\item $\vv_1,\ldots,\vv_n$ so linearno neodvisni
+\end{enumerate}
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{trditev}
+
+Naj bo $V$ \textit{vektorski prostor}. Potem $\forall \vv \in V$ lahko razvijemo po dani bazi na en sam način.
+
+\end{trditev}
+\vspace{0.5cm}
+
+\begin{izrek}
+
+Naj bo $V$ \textit{vektorski prostor}. Potem imajo vse baze prostora $V$ isto moč.
+
+\end{izrek}
+\vspace{0.5cm}
+
+\begin{definicija}[Dimenzija]
+
+Naj bo $V$ \textit{vektorski prostor}. Številu baznih vektorjev prostora $V$ pravimo \textit{dimenzija} prostora $V$. Oznaka:
+$$\dim V.$$
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{trditev}
+
+Naj bo $V$ \textit{vektorski prostor} in $\vv_1,\ldots,\vv_k$ naj bodo linearno neodvisni vektorji v $V$. Potem lahko množico teh vektorjev dopolnimo do baze prostora $V$.
+
+\end{trditev}
+\vspace{0.5cm}
+
+\begin{posledica}
+
+Naj bo $V$ \textit{vektorski prostor} in $U$ \textit{podprostor} v $V$. Potem velja $\dim U \leq \dim V$. Če velja $\dim U = \dim V$, potem je $U=V$.
+
+\end{posledica}
+\vspace{0.5cm}
+
+\begin{definicija}[Vsota podprostorov]
+
+Naj bo $V$ \textit{vektorski prostor} in $U,W$ \textit{podprostora} v $V$. Definiramo:
+$$U+W ~=~ \{\u + \w \mid \u \in U, \w \in W\}.$$
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{trditev}
+
+Naj bosta $U$ in $W$ \textit{podprostora} v $V$. Potem sta $U+W$ in $U \cap W$ tudi \textit{podprostora} v $V$.
+
+\end{trditev}
+\vspace{0.5cm}
+
+\begin{izrek}
+
+Naj bosta $U$ in $W$ \textit{podprostora} prostora $V$. Naj bo $\{\vec{x}_1,\ldots,\vec{x}_k\}$ baza $U \cap W$. To bazo dopolnimo do baz $U$ in $W$:
+\begin{align*}
+\text{baza}~U: ~&\{\vec{x}_1,\ldots,\vec{x}_k,\u_1,\ldots,\u_m\} \\
+\text{baza}~V: ~&\{\vec{x}_1,\ldots,\vec{x}_k,\w_1,\ldots,\w_n\}.
+\end{align*}
+Potem je
+$$\{\vec{x}_1,\ldots,\vec{x}_k,\u_1,\ldots,\u_m,\w_1,\ldots,\w_n\}$$
+baza $U+W$. V posebnem primeru velja:
+$$\dim(U+W) ~=~ \dim U + \dim W - \dim(U \cap W).$$
+
+\end{izrek}
+\vspace{0.5cm}
+
+\begin{definicija}[Direktna vsota]
+
+Naj bo $V$ \textit{vektorski prostor} in $U,W$ \textit{podprostora} v $V$. Če velja
+\begin{enumerate}
+	\item $V=U+W$
+	\item $U \cap W = \{0\}$
+\end{enumerate}
+pravimo, da je $V$ \textit{direktna vsota} podprostorov $U$ in $W$. Oznaka:
+$$V ~=~ U \oplus W.$$
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{opomba}
+
+Če je $V = U \oplus W$ in je $\{\u_1,\ldots,\u_m\}$ baza $U$, $\{\w_1,\ldots,\w_n\}$ baza $W$, je $\{\u_1,\ldots,\u_n,\w_1,\ldots,\w_n\}$ baza $V$.
+
+\end{opomba}
+\vspace{0.5cm}
+
+\begin{trditev}
+
+Naj bosta $U,W$ \textit{podprostora} v $V$. Potem je $V = U \oplus W$ $\iff$ vsak vektor $\vv \in V$ lahko zapišemo na enoličen način kot 
+$$\vv ~=~ \u + \w, ~~~\u \in U,~\w \in W.$$
+
+\end{trditev}
+\vspace{0.5cm}
+
+% *************************************************************************************************
+
+\pagebreak
+
+% #################################################################################################
+
+\section{Linearne preslikave \\(homomorfizmi vektorskih prostorov)}
+\vspace{0.5cm}
+
+% *************************************************************************************************
+
+\subsection{Uvod}
+\vspace{0.5cm}
+
+\begin{definicija}[Linearna preslikava]
+
+Naj bosta $U$ in $V$ \textit{vektorska prostora} nad istim obsegom $O$. Preslikava $A: U \rightarrow V$ je \textit{linearna}, če velja
+\begin{enumerate}
+	\item \textit{Aditivnost}: 
+	$$A(\u_1 + \u_2) ~=~ A(\u_1) + A(\u_2), ~~~\forall \u_1, \u_2  \in U$$
+	\item \textit{Homogenost}:
+	$$A(\alpha\u) ~=~ \alpha A(U), ~~~\forall \alpha \in O, ~\forall \u \in U$$
+\end{enumerate} 
+Če je $A:U \rightarrow V$ linearna preslikava in $\u \in U$, potem namesto $A(U)$ pišemo kar $A\u$.
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{trditev}
+
+Naj bo $A: U \rightarrow V$ linearna preslikava.
+\begin{enumerate}
+	\item $A\0_U = \0_V$
+	\item $\ker A ~=~ \{\u\in U \mid A\vv = \0 \}$ je \textit{podprostor} v $U$ - \textit{jedro} linearne preslikave.
+	\item $\im A ~=~ \{A\u \mid \u \in U\}$ je \textit{podprostor} v $V$ - \textit{slika} linearne preslikave
+	\item Naj bo $\{\u_1,\ldots,\u_n\}$ baza podprostora $U$. Slika poljubnega vektorja $\u\in U$ s preslikavo $A$ je natanko določena z $A\u_1,\ldots,A\u_n$.
+\end{enumerate}
+
+\end{trditev}
+\vspace{0.5cm}
+
+\begin{trditev}
+~
+\begin{enumerate}
+
+\item Naj bosta $A: U \rightarrow V$ in $B: U \rightarrow V$ dve linearni preslikavi. Potem je tudi preslikava $A+B: U \rightarrow V$ tudi linearna preslikava. Velja
+$$(A+B)\u ~=~ A\u + B\u.$$
+
+\item Naj bosta $A: U \rightarrow V$ in $B: V \rightarrow W$ linearni preslikavi. Potem je tudi $BA := B \circ A: U \rightarrow W$ linearna preslikava.
+
+\item Naj bo $A: U \rightarrow V$ linearna \textit{bijektivna} preslikava. Potem je $A^{-1}: V \rightarrow U$ tudi linearna.
+
+\end{enumerate}
+
+\end{trditev}
+\vspace{0.5cm}
+
+\begin{trditev}
+
+Naj bo $A: U \rightarrow V$ linearna preslikava:
+\begin{enumerate}
+	\item $\ker A = \{\0\}$ $\iff$ $A$ je \textit{injektivna}
+	\item $\im A = V$ $\iff$ $A$ je \textit{surjektivna}
+\end{enumerate}
+
+\end{trditev}
+\vspace{0.5cm}
+
+% *************************************************************************************************
+
+\subsection{Matrika, prirejena linearni preslikavi}
+\vspace{0.5cm}
+
+\begin{trditev}
+
+$A: U \rightarrow V$ je linearna preslikava. Naj bo $\B = \{\u_1,\ldots,\u_n\}$ baza $U$, $\C = \{\vv_1,\ldots,\vv_n\}$ pa baza $V$. Potem lahko vektorje $A\u_1,\ldots,A\u_n$ razvijemo po bazi $\C$.
+
+\end{trditev}
+\vspace{0.5cm}
+
+\begin{izrek}
+~
+\begin{enumerate}
+	
+	\item Naj bosta $A: U \rightarrow V$ in $B: V \rightarrow W$ linearni preslikavi. Naj bo $\B$ baza $U$, $\C$ baza $V$ in $\D$ baza $W$. Potem velja
+	$$(B \circ A)_{\D\B} ~=~ B_{\D\C} \cdot A_{\C\B}.$$
+	
+	\item Naj bo $A: U \rightarrow V$ \textit{bijektivna} linearna preslikava. Naj bo $\B$ baza $U$ in $\C$ baza $V$. Potem velja
+	$$\left(A^{-1}\right)_{\B\C} ~=~ \left(A_{\C\B}\right)^{-1}.$$	
+		
+\end{enumerate}
+
+\end{izrek}
+\vspace{0.5cm}
+
+\begin{izrek}
+
+Naj bo $A: U \rightarrow V$ linearna preslikava. Potem je
+$$\dim (\ker A) + \dim (\im A) ~=~ \dim U.$$
+
+\end{izrek}
+\vspace{0.5cm}
+
+% *************************************************************************************************
+
+\subsection{Prehod med bazami}
+\vspace{0.5cm}
+
+\begin{metoda}[Razvoj vektorja po različnih bazah]
+
+Naj bo $V$ vektorski prostor in $\B = \{\vv_1,\ldots,\vv_n\}$ baza $V$. $\vv \in V$ razvijemo po bazi $\B$:
+$$\vv ~=~ \alpha_1 \vv_1 + \ldots + \alpha_n \vv_n, ~~~\vv_\B = \begin{bmatrix}
+\alpha_1 \\
+\vdots \\
+\alpha_n
+\end{bmatrix}.$$
+Izberimo še eno baza vektorskega prostora V: $\C = \{\u_1,\ldots,\u_n\}$. $\vv \in V$ lahko razvijemo tudi po bazi $\C$:
+$$\vv ~=~ \beta_1 \u_1 + \ldots + \beta_n \u_n, ~~~\vv_\C = \begin{bmatrix}
+\beta_1 \\
+\vdots \\
+\beta_n
+\end{bmatrix}.$$
+Vektorje iz $\B$ lahko razvijemo po bazi $\C$:
+\begin{align*}
+\vv_1 ~&=~ \alpha_{11} \u_1 + \ldots + \alpha_{n1} \u_n \\
+&\vdots \\
+\vv_n ~&=~ \alpha_{1n} \u_1 + \ldots + \alpha_{nn} \u_n.
+\end{align*}
+Koeficiente zložimo v \textit{prehodno} matriko:
+$$P_{\C\B} ~=~ \begin{bmatrix}
+\alpha_{11} & \cdots & \alpha_{1n} \\
+\vdots & \ddots & \vdots \\
+\alpha_{n1} & \cdots & \alpha_{nn}
+\end{bmatrix},$$
+kjer $i$-ti stolpec predstavlje koeficiente $\vv_i$.
+
+\end{metoda}
+\vspace{0.5cm}
+
+\begin{izrek}
+
+Ob prejšnjih oznakah velja
+$$\vv_C ~=~ P_{\C\B} \cdot \vv_\B.$$
+
+\end{izrek}
+\vspace{0.5cm}
+
+\begin{metoda}
+
+Naj bo $A: U \rightarrow V$ linearna. Izberemo bazo $\B$ za $U$ in bazo $\C$ za $V$ ter preslikavi $A$ priredimo matriko $A_{\C\B}$. Za $U$ in $V$ lahko izberemo neki drugi bazi $\B_1$ in $\C_1$ in preslikavi $A$ priredimo matriko $A_{\C_1\B_1}$.
+
+\end{metoda}
+\vspace{0.5cm}
+
+\begin{izrek}
+
+$$A_{\C_1 \B_1} ~=~ P_{\C_1 \C} \cdot A_{\C\B} \cdot P_{\B\B_1}$$
+
+\end{izrek}
+\vspace{0.5cm}
+
+\begin{trditev}
+
+Naj bo $V$ vektorski prostor in $\B,\C,\D$ baze $V$.
+\begin{enumerate}
+	\item $P_{\C\B}$ je \textit{obrnljiva}:
+	$$\left(P_{\C\B}\right)^{-1} ~=~ P_{\B\C}$$
+	\item $P_{\D\B} ~=~ P_{\D\C} \cdot P_{\C\B}$
+\end{enumerate} 
+
+\end{trditev}
+\vspace{0.5cm}
+
+% *************************************************************************************************
+
+\subsection{Rang linearne preslikave}
+\vspace{0.5cm}
+
+\begin{definicija}
+
+Naj bo $A: U \rightarrow V$ linearna preslikava. Rang preslikave $A$ je rang matrike, ki pripada $A$ v vektorskih bazah $U$ in $V$.
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{opomba}
+
+Rang je neodvisen od izbire baz $U$ in $V$.
+
+\end{opomba}
+\vspace{0.5cm}
+
+\begin{izrek}
+
+Naj bo $A: U \rightarrow V$ linearna. Potem velja
+$$\rang A ~=~ \dim (\im A).$$
+
+\end{izrek}
+\vspace{0.5cm}
+
+% *************************************************************************************************
+
+\pagebreak
+
+% #################################################################################################
+
+\section{Lastni vektorji in lastne vrednosti \\linearnih preslikav in matrik}
+\vspace{0.5cm}
+
+% *************************************************************************************************
+
+\subsection{Uvod}
+\vspace{0.5cm}
+
+\begin{definicija}
+
+Naj bo $V$ vektorski prostor nad $\R$ (ali $\mathbb{C}$) in $A: V \rightarrow V$ linearna preslikava. Neničelen vektor $\vv \in V$ je \textit{lasten vektor} preslikave $A$, če obstaja skalar $\lambda$, da velja
+$$A\vv ~=~ \lambda\vv.$$
+$\lambda$ je potem \textit{lastna vrednost} preslikave $A$.
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{definicija}
+
+Naj bo $A$ \textit{kvadratna} matrika nad $\R$ ali $\mathbb{C}$. Neničelen stolpec $\vv \in \R^n$ (ali $\vv \in \mathbb{C}^n$) je \textit{lasten vektor} matrike $A$, če obstaja skalar $\lambda$, da velja
+$$A \cdot \vv ~=~ \lambda \cdot \vv.$$
+$\lambda$ je potem \textit{lastna vrednost} matrike $A$.
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{izrek}
+
+Naj bo $A: V \rightarrow V$ linearna preslikava in $\lambda$ nek skalar. Potem so lastni vektorji preslikave $A$ za lastno vrednost $\lambda$ natanko neničelni elementi
+$$\ker (A-\lambda I).$$
+Če je jedro $\ker (A-\lambda I) = \{\0\}$, potem $\lambda$ ni lastna vrednost preslikave $A$.
+
+\end{izrek}
+\vspace{0.5cm}
+
+\begin{izrek}
+
+Naj bo $A \in \R^{n \times n}$ matrika. Lastne vrednosti matrike $A$ so natanko rešitve enačbe
+$$\det (A-\lambda I) ~=~ 0.$$
+
+\end{izrek}
+\vspace{0.5cm}
+
+\begin{definicija}
+
+Naj bo $A$ \textit{kvadratna} matrika.
+\begin{itemize}
+
+\item Enačbi $\det (A-\lambda I)$ pravimo \textit{karakteristična enačba}.
+
+\item Če je $\lambda$ lastna vrednost, potem temu podprostoru $\ker (A-\lambda I)$ pravimo \textit{lasten podprostor} matrike $A$ za lastno vrednost $\lambda$.
+
+\end{itemize}
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{definicija}
+
+Naj bo $A$ \textit{kvadratna matrika}. Polinomu
+$$p_A(\lambda) ~:=~ \det (A-\lambda I)$$
+pravimo \textit{karakteristični polinom} matrike $A$. Če je $p(\lambda)$ kompleksen nekonstanten polinom stopnje $n$, potem ima natanko $n$ ničel (osnovni izrek algebre).
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{definicija}
+
+Naj bo $A \in \mathbb{C}^{n \times n}$ matrika in 
+$$p_A(\lambda) ~=~ (-1)^n(\lambda-\lambda_1)^{n_1} \ldots (\lambda-\lambda_k)^{n_k} ~=~ (-1)^n\prod_{i=1}^k (\lambda-\lambda_i)^{n_i}.$$
+Številu $n_i$ pravimo \textit{aritmetična večkratnost} lastne vrednosti $\lambda_i$. Številu $\dim(\ker(A-\lambda_i I))$ pravimo \textit{geometrijska večkratnost} lastne vrednosti $\lambda_i$.
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{dogovor}
+
+Če iščemo lastne vektorje matrike $A$ za lastno vrednost $\lambda$, v resnici iščemo bazo jedra $\ker (A-\lambda I)$.
+
+\end{dogovor}
+\vspace{0.5cm}
+
+% *************************************************************************************************
+
+\subsection{Diagonalizacija matrik}
+\vspace{0.5cm}
+
+\begin{definicija}
+
+Preslikava $A: V \rightarrow V$ se da \textit{diagonalizirati}, če obstaja baza prostora $V$, sestavljena iz lastnih vektorjev preslikave $A$.
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{definicija}
+
+Matrika $A \in \mathbb{C}^{n \times n}$ se da \textit{diagonalizirati}, če obstaja \textit{obrnljiva} matrika $P$ in \textit{diagonalna} matrika $D$, da je
+$$A ~=~ PDP^{-1}.$$
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{trditev}
+
+Naj bo $A: V \rightarrow V$ linearna in $\vv_1, \ldots, \vv_n$ lastni vektorji preslikave $A$ za \textit{različne} lastne vrednosti $\lambda_1, \ldots, \lambda_n$. Potem so $\vv_1, \ldots, \vv_n$ \textit{linearno neodvisni}.
+
+\end{trditev}
+\vspace{0.5cm}
+
+\begin{posledica}
+
+Naj bo $A: V \rightarrow V$ in recimo, da ima $A$ $n$ različnih lastnih vrednosti, kjer $n = \dim V$. Potem se da $A$ diagonalizirati.
+
+\end{posledica}
+\vspace{0.5cm}
+
+\begin{definicija}
+
+Naj bosta $A \in \mathbb{C}^{n \times n}$ in $B \in \mathbb{C}^{n \times n}$ matriki. Pravimo, da sta $A$ in $B$ \textit{podobni}, če obstaja \textit{obrnljiva} matrika $P$, da 
+$$A ~=~ PBP^{-1}.$$ A se torej da diagonalizirati $\iff$ A je podobna neki diagonalni matriki. 
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{izrek}[Schurov izrek]
+
+Vsaka matrika $A \in \mathbb{C}^{n \times n}$ je podobna neki \textit{zgornjetrikotni} matriki. Obstaja neka obrnljiva matrika $P$ in zgornjetrikotna matrika $U$, da velja
+$$A ~=~ PUP^{-1}.$$
+
+\end{izrek}
+\vspace{0.5cm}
+
+% *************************************************************************************************
+
+\pagebreak
+
+% #################################################################################################
+
+\section{Vektorski prostori s skalarnim produktom}
+\vspace{0.5cm}
+
+% *************************************************************************************************
+
+\subsection{Uvod}
+\vspace{0.5cm}
+
+\begin{definicija}[Skalarni produkt]
+
+Naj bo $V$ vektorski prostor nad $\mathbb{C}$. \\\textit{Skalarni produkt} je preslikava
+\begin{align*}
+\ls \cdot, \cdot \rs: V \times V &\rightarrow \mathbb{C} \\
+(\u,\vv) &\mapsto \ls \u, \vv \rs,
+\end{align*}
+ki zadošča lastnostim:
+\begin{enumerate}
+	\item $\ls \u, \vv \rs \geq 0, ~\forall \u,\vv \in V$ 
+	\item $\ls \u, \u \rs = 0$ $\iff$ $\u = \0$
+	\item $\ls \u, \vv \rs = \overline{\ls \vv, \u \rs}$
+	\item $\ls \u + \vv, \w \rs = \ls \u, \w \rs + \ls \vv, \w \rs$
+	\item $\ls \alpha \u, \vv \rs = \alpha \ls \u, \vv \rs, ~\u,\vv\in V, ~\alpha \in \mathbb{C}$
+\end{enumerate}
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{definicija}
+
+Naj bo $V$ vektorski prostor s skalarnim produktom.
+\begin{enumerate}
+	\item $\u,\vv \in V$ sta \textit{pravokotna}, če je $\ls \u, \vv \rs = 0$
+	\item \textit{Dolžina} vektorja (\textit{norma}) $\vv \in V$ je
+	$$\|\vv\| ~=~ \sqrt{\ls \vv, \vv \rs}$$
+	\item \textit{Pravokotna projekcija} vektorja $\vv$ na vektor $\u$ je vektor 
+	$$\text{proj}_\u \vv ~=~ \frac{\ls \vv, \u \rs}{\|\u\|^2} \cdot \u$$
+\end{enumerate}
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{trditev}
+
+Naj bo $V$ vektorski prostor s skalarnim produktom in $\u,\vv \in V$. Potem je $\vv - \text{proj}_\u \vv$ pravokoten na $\u$.
+
+\end{trditev}
+\vspace{0.5cm}
+
+\begin{trditev}
+
+Naj bo $V$ vektorski prostor s skalarnim produktom in $\vv \in V$. Recimo, da je $\vv$ pravokoten na vse vektorje iz $V$. Potem je $\vv = 0$.
+
+\end{trditev}
+\vspace{0.5cm}
+
+\begin{izrek}[Pitagorov izrek]
+
+Naj bo $V$ vektorski prostor s skalarnim produktom in $\u,\vv \in V$. Če sta $\u$ in $\vv$ \textit{pravokotna}, velja
+$$\|\u + \vv\|^2 ~=~ \|\u\|^2 + \|\vv\|^2.$$
+
+\end{izrek}
+\vspace{0.5cm}
+
+\begin{izrek}[Cauchy-Schwarzova neenakost]
+
+Naj bo $V$ vektorski prostor s skalarnim produktom in $\u,\vv \in V$. Potem velja
+$$|\ls \u, \vv \rs| ~\leq~ \|\u\| \cdot \|\vv\|.$$
+Enačaj velja $\iff$ $\u$ in $\vv$ sta linearno odvisna.
+
+\end{izrek}
+\vspace{0.5cm}
+
+\begin{izrek}
+
+Naj bo $V$ vektorski prostor s skalarnim produktom.
+\begin{enumerate}
+	\item $\|\vv\| ~\geq~ 0$
+	\item $\|\vv\| = 0$ $\iff$ $\vv = 0$
+	\item $\|\alpha\u\| ~=~ |\alpha|\cdot\|\u\|$
+	\item $\|\u + \vv\| ~\leq~ \|\u\| + \|\vv\|$
+\end{enumerate}
+
+\end{izrek}
+\vspace{0.5cm}
+
+\begin{opomba}[Posledica Cauchy-Schwarzove neenakosti]
+
+Naj bo $V$ vektorski prostor s skalarnim produktom nad $\R$. Naj bosta $\u,\vv \in V\setminus\{0\}$. Potem velja
+$$\left| \frac{\ls \u, \vv \rs}{\|\u\| \cdot \|\vv\|} \right| ~\leq~ 1.$$
+
+\end{opomba}
+\vspace{0.5cm}
+
+\begin{definicija}
+
+Naj bo $V$ vektorski prostor s skalarnim produktom nad $\R$ in $\u,\vv \in V \setminus \{0\}$. Kot med $\u$ in $\vv$ izračunamo s pomočjo zveze
+$$\cos \varphi ~=~ \frac{\ls \u, \vv \rs}{\|\u\| \cdot \|\vv\|}.$$
+
+\end{definicija}
+\vspace{0.5cm}
+
+% *************************************************************************************************
+
+\subsection{Ortogonalne in ortonormirane množice vektorjev}
+\vspace{0.5cm}
+
+\begin{definicija}
+
+Naj bo $V$ vektorski prostor s skalarnim produktom in $\vv_1,\ldots,\vv_n \in V$. Pravimo, da je množica $\{\vv_1,\ldots,\vv_n\}$
+\begin{itemize}
+	\item \textit{ortogonalna}, če $\forall i \neq j$: $\ls \vv_1, \vv_j \rs = 0$
+	\item \textit{ortonormirana}, če je \textit{ortogonalna} in $\|\vv_i\|=1$, $i = 1,\ldots,n$
+\end{itemize}
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{opomba}
+
+Naj bo $\|\vv\| \in V$, $\vv \neq 0$. Če vzamemo $u = \frac{v}{\|v\|}$, je
+\begin{align*}
+\|\u\| ~&=~ \left\lVert \frac{v}{\|\vv\|} \right\rVert \\
+&=~ \left\lVert \frac{1}{\|\vv\|} \cdot \vv \right\rVert \\
+&=~ \frac{1}{\|\vv\|} \cdot \|\vv\| ~=~ 1
+\end{align*}
+Torej lahko vsako \textit{ortogonalno} množico neničelnih vektorjev spremenimo v \textit{ortonormirano} tako, da vektorje delimo z njihovo normo.
+
+\end{opomba}
+\vspace{0.5cm}
+
+\begin{trditev}
+
+Naj bo $\{\vv_1,\ldots\vv_n\}$ ortogonalna množica neničelnih vektorjev. Potem so vektorji $\{\vv_1,\ldots,\vv_n\}$ linearno neodvisni.
+
+\end{trditev}
+\vspace{0.5cm}
+
+\begin{metoda}[Gramm-Schmidtova ortogonalizacija]
+
+Izberemo poljubno bazo prostora $V$: $\{\vv_1,\ldots,\vv_n\}$. Za primer $n=3$:
+\begin{align*}
+\u_1 ~&=~ \vv_1 \\
+\u_2 ~&=~ \vv_2 - \frac{\ls \vv_2, \u_1 \rs}{\|\u_1\|^2}\u_1 \\
+\u_3 ~&=~ \vv_3 - \frac{\ls \vv_3, \u_1 \rs}{\|\u_1\|^2}\u_1 - \frac{\ls \vv_3, \u_2 \rs}{\|u_2\|^2}\u_2
+\end{align*}
+V splošnem:
+$$\u_k ~=~ \vv_k - \frac{\ls \vv_k, \u_1 \rs}{\|\u_1\|^2}\u_1 - \ldots - \frac{\ls \vv_l, \u_{k-1} \rs}{\|\u_{k-1}\|^2}\u_{k-1}$$
+Tako dobimo \textit{ortogonalno bazo} $\{\u_1,\ldots, \u_n\}$. \textit{Ortonormirano} bazo dobimo tako, da bazo normiramo:
+\begin{align*}
+\e_1 ~&=~ \frac{\u_1}{\|\u_1\|} \\
+&\vdots \\
+\e_n ~&=~ \frac{\u_n}{\|\u_n\|}
+\end{align*}
+Baza $\{\e_1,\ldots,\e_n\}$ je \textit{ortonormirana} baza prostora $V$.
+
+\end{metoda}
+\vspace{0.5cm}
+
+\begin{trditev}
+
+Naj bo $V$ vektorski prostor s skalarnim produktom in $\{\e_1,\ldots,\e_n\}$ \textit{ortonormirana} baza prostora $V$. Potem za $\vv \in V$ velja
+$$\vv ~=~ \ls \vv,\e_1 \rs \e_1 + \ldots + \ls \vv, \e_n \rs \e_n.$$
+
+\end{trditev}
+\vspace{0.5cm}
+
+\begin{definicija}
+
+Naj bo $U \leq V$, $\vv \in V$. Izberemo \textit{ortonormirano} bazo prostora $U$: $\{\e_1,\ldots,\e_k\}$. \textit{Pravokotna projekcija} vektorja $\vv$ na podprostor $U$ je vektor
+$$\text{proj}_\u \vv ~=~ \ls \vv,\e_1 \rs \e_1 + \ldots + \ls \vv,\e_k \rs \e_k.$$
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{definicija}[Ortogonalni komplement]
+
+Naj bo $V$ vektorski prostor s skalarnim produktom in $U \leq V$.
+$$U^{\perp} ~=~ \vv \in V \mid  \sp{\vv}{\u} = 0 ~\forall \u \in U\}$$
+je \textit{ortogonalni komplement} prostora $U$.
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{trditev}
+
+Naj bo $U \leq V$.
+\begin{enumerate}
+	\item $\{\0\}^\perp = V$, $V^\perp = \{\0\}$
+	\item $U^\perp$ je podprostor v $V$
+	\item $(U^\perp)^\perp = U$
+\end{enumerate}
+
+\end{trditev}
+\vspace{0.5cm}
+
+\begin{izrek}
+
+Naj bo $V$ vektorski prostor s skalarnim produktom in $U$ podprostor v $V$. Potem velja
+$$V ~=~ U \oplus U^\T.$$
+
+\end{izrek}
+\vspace{0.5cm}
+
+% *************************************************************************************************
+
+\subsection{Rieszov izrek}
+\vspace{0.5cm}
+
+\begin{definicija}[Linearen funkcional]
+
+Naj bo $V$ vektorski prostor nad kompleksnimi števili. \textit{Linearen funkcional} je linearna preslikava
+$$f: V \rightarrow \mathbb{C}.$$
+Namesto $\mathbb{C}$ lahko vzamemo poljuben obseg.
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{izrek}[Rieszov izrek]
+
+Naj bo $V$ vektorski prostor s skalarnim produktom in $f:V \rightarrow \mathbb{C}$ linearen funkcional. Potem obstaja \textit{enolično} določen $\a \in V$, da velja
+$$f(\vv) ~=~ \sp{\vv}{\a}, ~~~\vv \in V.$$
+Vektorju $\a$ pravimo \textit{Rieszov vektor}, ki pripada funkcionalu $f$.
+
+\end{izrek}
+\vspace{0.5cm}
+
+% *************************************************************************************************
+
+\pagebreak
+
+% #################################################################################################
+
+\section{Sebiadjungirane, ortogonalne in \\normalne preslikave}
+\vspace{0.5cm}
+
+% *************************************************************************************************
+
+\subsection{Adjungirane preslikave}
+\vspace{0.5cm}
+
+\begin{definicija}[Adjungirana preslikava]
+
+Naj bosta $U$ in $V$ vektorska prostora nad $\mathbb{C}$, opremljena s skalarnima produktoma $\sp{\cdot}{\cdot}_U$ in $\sp{\cdot}{\cdot}_V$. Recimo, da je $A: U \rightarrow V$ linearna preslikava. Po Rieszovem izreku obstaja natanko določen vektor $\a \in U$, da je
+$$f(\u) ~=~ \sp{\u}{\a}_U, ~\forall \u \in U.$$ Definirajmo preslikavo $A^*: V \rightarrow U$, $A^* \vv = \a$. $A^*$ je \textit{adjungirana preslikava} linearne preslikave $A$. Velja torej
+$$\sp{A\u}{\vv}_V ~=~ \sp{\u}{A^* \vv}_U, ~~~\forall \u \in U, ~\forall \vv \in V.$$
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{trditev}
+
+$A^*$ je linearna preslikava.
+
+\end{trditev}
+\vspace{0.5cm}
+
+\begin{izrek}
+
+Naj bo $A: U \rightarrow V$ linearna in $\B$ ter $\C$ \textit{ortogonalni} bazi $U$ in $V$. Potem 
+$$A_{\B\C}^* ~=~ \overline{A_{\C\B}^\T}.$$
+
+\end{izrek}
+\vspace{0.5cm}
+
+\begin{definicija}[Hermitska matrika]
+
+Naj bo $A \in \C^{m \times n}$. $A$ \textit{hermitsko} definiramo kot
+$$A^\H ~=~ \overline{A^\T}.$$
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{opomba}
+
+$A: U \rightarrow V$, $A^*: V \rightarrow U$. $\B$ baza $U$, $\C$ baza $V$. Preko Gramm-Schmidtovega postopka dobimo \textit{ortonormirani} bazi $\B_1$ in $\C_1$. Po trditvi velja $A_{\B_1\C_1}^* = A_{\C_1\B_1}^\H$. Potem velja
+$$A_{\B\C}^* ~=~ P_{\B\B_1} A_{\B_1\C_1}^* P_{\C_1\C} ~=~ P_{\B\B_1} A_{\C_1\B_1}^\H P_{\C_1\C},$$
+kjer upoštevamo $A_{\C_1\B_1} = P_{\C_1\C} A_{\C\B} P_{\B\B_1}$.
+
+\end{opomba}
+\vspace{0.5cm}
+
+\begin{trditev}
+
+Naj bosta $A: U \rightarrow V$, $B: U \rightarrow V$ in $C: V \rightarrow W$ linearne preslikave.
+\begin{enumerate}
+	\item $(A^*)^* ~=~ A$
+	\item $(A+B)^* ~=~ A^* + B^*$
+	\item $(\alpha A)^* ~=~ \overline{\alpha}A^*$
+	\item $(CA)^* ~=~ A^*C^*$
+\end{enumerate}
+
+\end{trditev}
+\vspace{0.5cm}
+
+\begin{trditev}
+
+Naj bo $A: U \rightarrow V$ linearna, $A^*$ adjungirana preslikava. Potem velja
+\begin{enumerate}
+	\item $\ker A^* ~=~ (\im A)^\perp$
+	\item $\im A^* ~=~ (\ker A)^\perp$
+\end{enumerate}
+
+\end{trditev}
+\vspace{0.5cm}
+
+\begin{trditev}
+
+Naj bo $A: V \rightarrow V$ linearna. Če je $\lambda$ lastna vrednost $A$, potem je $\overline{\lambda}$ lastna vrednost $A^*$. Zapišemo
+$$A\vv = \lambda\vv ~\iff~ A^*\vv = \overline{\lambda}\vv.$$ 
+
+\end{trditev}
+\vspace{0.5cm}
+
+% *************************************************************************************************
+
+\subsection{Normalne linearne preslikave in normalne matrike}
+\vspace{0.5cm}
+
+\begin{definicija}
+~
+\begin{enumerate}
+
+\item Naj bo $A: V \rightarrow V$ linearna. Pravimo, da je $A$ \textit{normalna}, če velja
+$$AA^* ~=~ A^*A.$$
+
+\item Naj bo $A\in\mathbb{C}^{n \times n}$. Pravimo, da je $A$ \textit{normalna}, če velja
+$$AA^\H ~=~ A^\H A.$$
+
+\item Naj bo $A \in \R^{n \times n}$. $A$ je \textit{normalna}, če velja
+$$AA^\T ~=~ A^\T A.$$
+
+\end{enumerate}
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{izrek}
+
+Naj bo $A: V \rightarrow V$ normalna linearna preslikava. Potem velja
+$$\ker (A-\lambda I) ~=~ \ker (A^*-\overline{\lambda} I).$$
+
+\end{izrek}
+\vspace{0.5cm}
+
+\begin{trditev}
+
+Naj bo $A: V \rightarrow V$ normalna preslikava in naj bosta $\vv_1,\vv_2$ lastna vektorja preslikave $A$ za različni lastni vrednosti $\lambda_1,\lambda_2$. Potem sta $\vv_1$ in $\vv_2$ \textit{pravokotna} ($\vv_1 \perp \vv_2$).
+
+\end{trditev}
+\vspace{0.5cm}
+
+\begin{izrek}[Izrek normalne preslikave]
+
+Naj bo $A: V \rightarrow V$ normalna preslikava. Naj bodo $\alpha_1,\ldots,\alpha_k$ različne lastne vrednosti preslikave $A$. Potem je
+$$V ~=~ \ker(A-\lambda_1 I) \oplus \ldots \oplus \ker(A-\lambda_k I),$$
+pri čemer so za vsak $i$ vektorji iz $\ker(A-\lambda_i I)$ \textit{pravokotni} na vse vektorje iz $\ker(A-\lambda_j I)$, $j\neq i$. Z drugimi besedami: obstaja \textit{ortonormirana} baza prostora $V$, sestavljena iz lastnih vektorjev preslikave $A$. Torej se da $A$ vedno diagonalizirati.
+
+\end{izrek}
+\vspace{0.5cm}
+
+\begin{opomba}
+
+Naj bo $A$ normalna matrika. Obstaja \textit{ortonormirana} baza prostora $\mathbb{C}^n$, sestavljena iz lastnih vektorjev matrike $A$.
+$$A ~=~ PDP^{-1},$$
+kjer je $D$ \textit{diagonalna}. Stolpci matrike $P$ so \textit{ortonormirani} vektorji v običajnem skalarnem produktu prostora $\mathbb{C}^n$.
+
+\end{opomba}
+\vspace{0.5cm}
+
+% *************************************************************************************************
+
+\subsection{Unitarne linearne preslikave, unitarne matrike, \\ortogonalne preslikave}
+\vspace{0.5cm}
+
+\begin{definicija}
+~
+\begin{enumerate}
+
+\item Naj bo $A: V \rightarrow V$ linearna. $A$ je \textit{unitarna}, če 
+$$AA^* ~=~ A^*A ~=~ I.$$
+
+\item Naj bo $A \in \mathbb{C}^{n \times n}$. $A$ je \textit{unitarna}, če
+$$AA^\H ~=~ A^\H A ~=~ I.$$
+
+\item Naj bo $A \in \R^{n \times n}$. $A$ je \textit{ortogonalna}, če
+$$AA^\T ~=~ A^\T A ~=~ I.$$
+
+\end{enumerate}
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{opomba}
+
+$A$ je normalna.
+$$A ~=~ PDP^{-1},$$
+stolpci $P$ so \textit{ortonormirani} vektorji, torej je $P$ \textit{unitarna}. Zato
+$$P^{-1} ~=~ P^\H.$$
+Torej, če je $A$ normalna, potem 
+$$A ~=~ PDP^\H,$$
+kjer je $P$ unitarna.
+
+\end{opomba}
+\vspace{0.5cm}
+
+\begin{opomba}
+
+Vsaka unitarna preslikava (matrika) je tudi normalna.
+
+\end{opomba}
+\vspace{0.5cm}
+
+\begin{izrek}
+
+Naj bo $A$ unitarna preslikava in $\lambda$ lastna vrednost oreskujave $A$. Potem je 
+$$|\lambda| ~=~ 1.$$
+
+\end{izrek}
+\vspace{0.5cm}
+
+\begin{opomba}
+
+Naj bo $A: V \rightarrow V$ unitarna. Za $\u,\vv \in V$ velja
+$$\sp{\u}{\vv} ~=~ \sp{A^*A\u}{\vv} ~=~ \sp{A\u}{A\vv}.$$
+$A$ torej ohranja skalarni produkt. V posebnem primeru, $\forall \vv \in V$:
+\begin{align*}
+\sp{\vv}{\vv} ~&=~ \sp{A\vv}{A\vv} \\
+\|\vv\|^2 ~&=~ \|A\vv\|^2 \\
+\|A\vv\| ~&=~ \|\vv\|
+\end{align*}
+$A$ torej ohranja dolžine vektorjev.
+
+\end{opomba}
+\vspace{0.5cm}
+
+\begin{definicija}[Izometrija]
+
+Linearna preslikava $A: V \rightarrow V$ je \textit{izometrija}, če
+$$\|A\x\| ~=~ \|\x\|, ~~~\forall \x \in V.$$
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{trditev}[Polarizacijska identiteta]
+~
+\begin{enumerate}
+
+\item Naj bo $V$ vektorski prostor nad $\R$ s skalarnim produktom. Potem za $\forall \x,\y \in V$ velja
+$$\sp{\x}{\y} ~=~ \frac{1}{4} \left(\|\x+\y\|^2 - \|\x-\y\|^2\right).$$
+
+\item Če je $V$ vektorski prostor nad $\mathbb{C}$ s skalarnim produktom. Potem za $\forall \x,\y \in V$ velja
+$$\sp{\x}{\y} ~=~ \frac{1}{4} \left(\|\x+\y\|^2 - \|\x-\y\|^2 + i\|x-i\y\|^2 - i\|\x+i\y\|^2\right).$$
+
+\end{enumerate}
+
+\end{trditev}
+\vspace{0.5cm}
+
+\begin{izrek}
+
+Naj bo $A: V \rightarrow V$ linearna. Potem je $A$ unitarna natanko tedaj, ko je izometrija.
+
+\end{izrek}
+\vspace{0.5cm}
+
+% *************************************************************************************************
+
+\subsection{Sebiadjungirane preslikave, hermitske matrike, pozitivno definitne preslikave in matrike}
+\vspace{0.5cm}
+
+\begin{definicija}
+~
+\begin{enumerate}
+
+\item Linearna preslikava $A: V \rightarrow V$ je \textit{sebiadjungirana}, če
+$$A^* ~=~ A.$$
+
+\item $A \in \mathbb{C}^{n \times n}$ je \textit{hermitska} matrika, če
+$$A^\H ~=~ A.$$
+
+\item $A \in \R^{n \times n}$ je \textit{simetrična} matrika, če
+$$A^\T ~=~ A.$$
+
+\end{enumerate}
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{opomba}
+
+Če je $A: V \rightarrow V$ sebiadjungirana, je tudi normalna:
+$$A^*A ~=~ AA = AA^*.$$
+Torej med drugim obstaja ortonormirana baza $V$, sestavljena iz lastnih vektorjev $A$. Z matrike to pomeni
+$$A ~=~ PDP^\H,$$
+kjer je $D$ diagonalna in $P$ unitarna.
+
+\end{opomba}
+\vspace{0.5cm}
+
+\begin{izrek}
+
+Naj bo $A: V \rightarrow V$ sebiadjungirana linearna preslikava. Potem so vse njene lastne vrednosti realne.
+
+\end{izrek}
+\vspace{0.5cm}
+
+\begin{definicija}[Pozitivna definitnost]
+
+Naj bo $A: V \rightarrow V$ sebiadjungirana. Pravimo, da je $A$ \textit{pozitivno definitna}, če
+$$\sp{A\vv}{\vv} ~>~ 0, ~~~\forall \vv \in V \setminus \{0\}.$$
+$A$ je \textit{pozitivno semidefinitna}, če
+$$\sp{A\vv}{\vv} ~\geq~ 0, ~~~\forall \vv \in V.$$
+Podobno za matrike.
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{izrek}
+
+Naj bo $A: V \rightarrow V$ sebiadjungirana. Potem je $A$ \textit{pozitivno definitna} $\iff$ vse lastne vrednosti $A$ so pozitivne.
+
+\end{izrek}
+\vspace{0.5cm}
+
+% *************************************************************************************************
+
+\pagebreak
+
+% #################################################################################################
+
+\section{Kvadratne forme}
+\vspace{0.5cm}
+
+% *************************************************************************************************
+
+\subsection{Uvod}
+\vspace{0.5cm}
+
+\begin{definicija}[Kvadratna forma]
+
+Naj bo $\R^n$ opremljen s standardnim skalarnim produktom. Naj bo $A \in \R^{n \times n}$ simetrična matrika. \textit{Kvadratna forma}, ki pripada matriki $A$ je preslikava $q: \R^n \rightarrow \R$, definirana s predpisom
+$$q(\vv) ~=~ \sp{A\vv}{\vv}, ~~~\vv \in \R^n.$$
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{definicija}
+
+Naj bosta $q$ in $r$ kvadratni formi z matrikama $A$ in $B$. Pravimo, da sta $q$ in $r$ ekvivalentni, če obstaja obrnljiva matrika $P$, da je
+$$A ~=~ PBP^\T.$$
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{definicija}
+
+Vsaka kvadratna forma je ekvivalentna kvadratni formi, ki ji pripada diagonalna matrika.
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{izrek}[Sylvestrov izrek o vztrajnosti]
+
+Naj bo $q: \R^n \rightarrow \R$ kvadratna forma, ki ji pripada simetrična matrika $A$. Potme je $q$ ekvivalentna kvadratni formi, ki ji pripada matrika
+$$\begin{bmatrix}
+1 & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ \\
+~ & \ddots & ~ & ~ & ~ & ~ & ~ & ~ & ~ \\
+~ & ~ & 1 & ~ & ~ & ~ & ~ & ~ & ~ \\
+~ & ~ & ~ & -1 & ~ & ~ & ~ & ~ & ~ \\
+~ & ~ & ~ & ~ & \ddots & ~ & ~ & ~ & ~ \\
+~ & ~ & ~ & ~ & ~ & -1 & ~ & ~ & ~ \\
+~ & ~ & ~ & ~ & ~ & ~ & 0 & ~ & ~ \\
+~ & ~ & ~ & ~ & ~ & ~ & ~ & \ddots & ~ \\
+~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & 0
+\end{bmatrix}$$
+s $r$ pozitivnimi diagonalnimi elementi in lastnimi vrednostmi ter $s$ negativnimi diagonalnimi elementi in lastnimi vrednostmi. Paru $(r,s)$ pravimo \textit{signatura} kvadratne forme.
+
+\end{izrek}
+\vspace{0.5cm}
+
+\begin{definicija}
+
+Naj bo $q$ kvadratna forma, ki ji pripada simetrična matrika 
+$$A ~=~ PDP^\T,$$
+kjer sta $D$ diagonalna in $P$ ortogonalna. Stolpci matrike $P$ so \textit{glavne osi} kvadratne forme $q$.
+
+\end{definicija}
+\vspace{0.5cm}
+
+% *************************************************************************************************
+
+\subsection{Krivulje in ploskve 2. reda}
+\vspace{0.5cm}
+
+\begin{definicija}
+
+\textit{Krivulja 2. reda} je množica točk $(x,y) \in \R^2$ za katere velja
+$$ax^2 + 2bxy + cy^2 + dx + cy + f ~=~ 0.$$
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{definicija}
+
+\textit{Ploskev 2. reda} je množica točk $(x,y,z) \in \R^3$ za katere velja
+$$ax^2  + by^2 + cz^2+ 2dxy + 2exz+ 2fyz + gx + hy + jz + k ~=~ 0.$$
+
+\end{definicija}
+\vspace{0.5cm}
+
+% *************************************************************************************************
+
+\pagebreak
+
+% #################################################################################################
+
+\section{Cayley-Hamiltonov izrek in \\minimalni polinom kvadratne matrike}
+\vspace{0.5cm}
+
+% *************************************************************************************************
+
+\subsection{Uvod}
+\vspace{0.5cm}
+
+\begin{definicija}[Minimalni polinom matrike glede na vektor]
+
+Naj bo 
+$$p(x) ~=~ a_n x^n + a_{n-1} x^{n-1} + \ldots + a_1 x + a_0$$
+polinom s kompleksnimi koeficienti. Naj bo $A \in \mathbb{C}^{m \times m}$ matrika. Potem definiramo \textit{matrični polinom}
+$$p(A) ~=~ a_n A^n + a_{n-1} A^{n-1} + \ldots + a_1 A + a_0.$$
+Recimo, da je $A \in \mathbb{C}^{m \times m}$ in $\vv \in \mathbb{C}^n$, $\vv \neq 0$. Naj bo $k$ najmanjše tako število, da je $A^k\vv$ linearno odvisen od 
+$$\vv, A\vv, A^2\vv, \ldots, A^{k-1}\vv, ~~~k \leq m.$$
+$A^k\vv$ lahko torej zapišemo kot 
+$$A^k\vv ~=~ \alpha_0 \vv + \alpha_1 A\vv + \ldots + \alpha_{k-1} A^{k-1} \vv,$$
+kar lahko preoblikujemo v 
+$$(A^k - \alpha_{k-1} A^{k-1} - \ldots - \alpha_1 A\vv - \alpha_0 I)\vv ~=~ 0.$$
+Označimo:
+$$p_{A,\vv} ~=~ x^k - \alpha_{k-1} x^{k-1} - \ldots - \alpha_1 x - \alpha_0$$
+$p_{A,\vv}$ je polinom z vodilnim koeficientom $1$, najnižje stopnje med vsemi, ki ``uničijo'' $\vv$:
+$$p_{A,\vv}(A) \cdot \vv ~=~ 0.$$
+$p_{A,\vv}$ je \textit{minimalni polinom} matrike $A$ glede na vektor $\vv$.
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{definicija}[Pridružena matrika]
+
+Naj bo 
+$$p(x) ~=~ x^l - \alpha_{k-1} x^{k-1} - \ldots - \alpha_1 x - \alpha_0.$$
+Matriki
+$$C(p) ~=~ \begin{bmatrix}
+0 & ~ & ~ & ~ & \alpha_0 \\
+1 & \ddots & ~ & ~ & \alpha_1 \\
+~ & \ddots & \ddots & ~ & \vdots \\
+~ & ~ & 1 & 0 & \alpha_{k-1} \\
+\end{bmatrix}$$
+pravimo \textit{pridružena matrika} polinomu $p$.
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{trditev}
+
+Naj bo $p(x) = x^k - \alpha_{k-1} x^{k-1} - \ldots - \alpha_1 x - \alpha_0$ polinom. Potem je karakteristični polinom matrike $C(p)$ enak
+$$(-1)^k \cdot p(\lambda).$$
+
+\end{trditev}
+\vspace{0.5cm}
+
+\begin{posledica}
+
+Naj bo $A \in \R^{n \times n}$ matrika in $\vv$ neničelen vektor. Potem polinom $p_{A,\vv}$ deli karakteristični polinom matrike $A$.
+
+\end{posledica}
+\vspace{0.5cm}
+
+\begin{izrek}[Cayley-Hamiltonov izrek]
+
+Naj bo $p_A(\lambda)$ karakteristični polinom matrike $A$. Potem 
+$$p_A(A) ~=~ 0.$$
+
+\end{izrek}
+\vspace{0.5cm}
+
+\begin{definicija}[Minimalni polinom]
+
+Naj bo $A \in \mathbb{C}^{n \times n}$. Polinom $m_A(\lambda) = \alpha^k + a_{k-1}\lambda^{k-1} + \ldots + a_1 \lambda + a_0$ je \textit{minimalni polinom}, če
+\begin{enumerate}
+	\item $m_A(A) ~=~ 0$
+	\item je $q(\lambda)$ katerikoli polinom, za katerega velja,da je
+	$$q(A) ~=~ 0,$$
+	potem $m_A(\lambda)$ deli $q(\lambda)$.
+\end{enumerate} 
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{posledica}
+
+Minimalni polinom matrike $A$ deli karakteristični polinom matrike $A$.
+
+\end{posledica}
+\vspace{0.5cm}
+
+\begin{opomba}
+
+Če imamo polinoma $p(x)$ in $q(x)$, potem $p(x)$ deli $q(x)$ natanko tedaj, ko velja:
+$$q(x) = A(x-x_1)^{n_1}\cdot\ldots\cdot(x-x_k)^{n_k} ~\Rightarrow~ p(x) = B(x-x_1)^{m_1}\cdot\ldots\cdot(x-x_k)^{m_k},$$
+$$0 \leq m_i \leq n_i ~\forall i = 1,\ldots,k$$
+
+\end{opomba}
+\vspace{0.5cm}
+
+\begin{trditev}
+
+Naj bo $A \in \mathbb{C}^{n \times n}$ matrika in $\vv$ neničelen vektor. Potem $p_{A,\vv}(x)$ deli $m_A(x)$.
+
+\end{trditev}
+\vspace{0.5cm}
+
+\begin{posledica}
+
+Vsaka lastna vrednost matrike $A$ je \textit{ničla} minimalnega \hbox{polinoma}. Z drugimi besedami:
+$$p_A(\lambda) = \pm(\lambda-\lambda)^{n_1}\cdot\ldots\cdot(\lambda-\lambda)^{n_k} ~\Rightarrow~ m_A(\lambda) = (\lambda-\lambda)^{m_1}\cdot\ldots\cdot(\lambda-\lambda)^{m_k},$$
+$$0 < m_i \leq n_i ~\forall i = 1,\ldots,k$$
+
+\end{posledica}
+\vspace{0.5cm}
+
+\begin{izrek}
+
+Naj bo $A \in \mathbb{C}^{n \times n}$ in recimo, da je $m_A(\lambda) = q_1(\lambda) \cdot q_2(\lambda)$, pri čemer $q_1(\lambda)$ in $q_2(\lambda)$ nimata skupnih ničel\footnote{Nimata skupnega delitelja.} - polinoma sta \textit{tuja}.
+Označimo:
+\begin{align*}
+V_1 ~&=~ \ker q_1(A) \subseteq \mathbb{C}^n \\
+V_2 ~&=~ \ker q_2(A) \subseteq \mathbb{C}^n
+\end{align*}
+Potem je 
+$$\mathbb{C}^n ~=~ V_1 \oplus V_2.$$ Če izberemo bazo $\B$ glede na ta razcep (unija baz $V_1$ in $V_2$), ima $A$ glede na to bazo matriko oblike
+$$A_{\B\B} ~=~ \begin{bmatrix}
+A_1 & 0 \\
+0 & A_2
+\end{bmatrix}.$$
+
+\end{izrek}
+\vspace{0.5cm}
+
+\begin{izrek}[Izrek o spektralnem razcepu]
+
+Naj bo $\mathbb{C}^{n \times n}$ matrika z minimalnim polinomom
+$$m_A(\lambda) ~=~ (\lambda-\lambda_1)^{m_1}\cdot\ldots\cdot(\lambda-\lambda_r)^{m_r},$$
+kjer so $\lambda_1,\ldots,\lambda_r$ paroma različne lastne vrednosti. Označimo
+$$V_i ~=~ \ker (A-\lambda I)^{m_i}, ~~~i = 1,\ldots,r.$$
+Potem je
+$$\mathbb{C}^n ~=~ V_1 \oplus \ldots \oplus V_r.$$
+Glede na ta razcep ima $A$ matriko oblike
+$$A_{\B\B} ~=~ \begin{bmatrix}
+A_1 & ~ & ~ \\
+~ & \ddots & ~ \\
+~ & ~ & A_r
+\end{bmatrix}.$$
+Pri tem je $\lambda_i$ edina lastna vrednost matrike $A_i$. 
+
+\end{izrek}
+\vspace{0.5cm}
+
+
+\begin{definicija}[Korenski podprostor]
+
+Glede na zgornje oznake podprostoru
+$$V_i ~=~ \ker(A-\lambda_i I)^{m_i}$$
+pravimo \textit{korenski podprostor} matrike $A$ za lastno vrednost $\lambda_i$.
+
+\end{definicija}
+\vspace{0.5cm}
+
+% *************************************************************************************************
+
+\subsection{Jordanova kanonična forma}
+\vspace{0.5cm}
+
+\begin{definicija}
+
+Naj bo $A \in \mathbb{C}^{n \times n}$ matirke in $m_A(\lambda) = (\lambda-\lambda_1)^{m_1}\cdot\ldots\cdot(\lambda-\lambda_r)^{m_r}$ njen minimalni polinom. Naj bodo
+$$V_i ~=~ \ker(A-\lambda_i)^{m_i}, ~~~i=1,\ldots,r$$
+korenski podprostori. Če je $\B$ unija baz podprostorov $V_1,\ldots,V_r$, je
+$$A_{\B\B} ~=~ \begin{bmatrix}
+A_1 & ~ & ~ \\
+~ & \ddots & ~ \\
+~ & ~ & A_r
+\end{bmatrix}.$$
+Pri tem je $\lambda_i$ edina lastna vrednost matrike $A_i$. Brez škode za splošnost predpostavimo, da ima $A$ eno samo lastno vrednost - označimo jo z $\rho$.
+\begin{itemize}
+	\item Karakteristični polinom: 
+	$$p_A(\lambda) ~=~ (-1)^n (\lambda - \rho)^n$$
+	\item Minimalni polinom: 
+	$$m_A(\lambda) ~=~ (\lambda - \rho)^m, ~~~1 \leq m \leq n.$$
+\end{itemize}
+Označimo:
+$$B ~=~ A - \rho I$$
+Potem je
+\begin{itemize}
+	\item $p_B(\lambda) ~=~ (-1)^n\lambda^n.$ 
+	\item $m_B(\lambda) ~=~ \lambda^m.$
+\end{itemize}
+Brez škode za splošnost si lahko ogledamo matriko $B$. $0$ je edina lastna vrednost matrike $B$. Poleg tega po definiciji minimalnega polinoma velja
+\begin{itemize}
+	\item $B^m ~=~ 0,$
+	\item $B^k ~\neq~ 0 ~\forall k<m.$
+\end{itemize}
+Definirajmo
+$$W_i ~=~ \ker B^i, ~~~i=0,\ldots,m.$$
+Potem imamo
+$$\{0\} ~=~ W_0 ~\subseteq~ W_1 ~\subseteq~ \ldots ~\subseteq~ W_m ~=~ \mathbb{C}^n,$$
+kjer upoštevamo
+\begin{itemize}
+	\item $W_0 ~=~ \ker B^0 ~=~ \ker I ~=~ \{0\}$ 
+	\item $W_m ~=~ \ker B^m ~=~ \ker 0 ~=~ \mathbb{C}^n$
+\end{itemize}
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{trditev}
+
+Glede na zgornje oznake velja
+\begin{enumerate}
+	\item $W_i \subsetneqq W_{i+1}$ ($W_i$ strogo vsebovan v $W_{i+1}$)
+	\item $\x \in W_i ~\iff~ B\x \in W_{i-1}$ 
+\end{enumerate}
+
+\end{trditev}
+\vspace{0.5cm}
+
+\begin{definicija}[$i$-linearna neodvisnost]
+
+Naj bo $V$ neprazna množica vektorjev v $\mathbb{C}^n$. Pravimo, da je $V$ \textit{$i$-linearno neodvisna}, če
+\begin{enumerate}
+	\item $V \subseteq W_i$ 
+	\item vektorji $V$ so linearno neodvisni
+	\item $\Lin V \cap W_{i-1} ~=~ \{0\}$
+\end{enumerate}
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{trditev}
+
+Naj bo $V \subseteq W_i$ $i$-linearno neodvisna množica vektorjev. Potem je množica
+$$BV ~=~ \{B\vv \mid \vv \in V\}$$
+$(i-1)$-linearno neodvisna.
+
+\end{trditev}
+\vspace{0.5cm}
+
+\begin{posledica}
+
+$A$ se da diagonalizirati $\iff$ $m_A(\lambda)$ ima same enojne ničle.
+
+\end{posledica}
+\vspace{0.5cm}
+
+% *************************************************************************************************
+
+\pagebreak
+
+% #################################################################################################
+
+\section{Psevdoinverz matrike}
+\vspace{0.5cm}
+
+% *************************************************************************************************
+
+\subsection{Uvod}
+\vspace{0.5cm}
+
+\begin{definicija}[Psevdoinverz]
+
+Naj bo $A \in \R^{m \times n}$ matrika. Za matriko $A^+ \in \R^{n \times m}$ pravimo, da je \textit{psevdoinverz} matrike $A$, če velja:
+\begin{enumerate}
+	\item $AA^+A ~=~ A$
+	\item $A^+AA^+ ~=~ A^+$
+	\item $AA^+$ in $A^+A$ sta simetrični matriki
+\end{enumerate}
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{trditev}
+
+Naj bo $A \in \R^{m \times n}$. Potem je psevdoinverz matrike $A$, če obstaja, enolično določen.
+
+\end{trditev}
+\vspace{0.5cm}
+
+\begin{lema}
+
+Naj bosta $A \in \R^{m \times n}$ in $B \in \R^{n \times p}$ matriki. Potem velja
+$$\rang AB \leq \rang A ~~~\text{in}~~~ \rang AB \leq \rang B.$$
+
+\end{lema}
+\vspace{0.5cm}
+
+\begin{lema}
+
+$A$ naj ima psevdoinverz $A^+$.
+\begin{enumerate}
+	\item $A^+$ ima tudi psevdoinverz:
+	$$(A^+)^+ ~=~ A$$
+	\item $A^T$ ima tudi psevdoinverz:
+	$$(A^\T)^+ ~=~ (A^+)^\T$$
+	\item $\rang A^+ ~=~ \rang A$
+	\item $A^\T AA^+ ~=~ A^\T$
+\end{enumerate}
+
+\end{lema}
+\vspace{0.5cm}
+
+\begin{izrek}
+
+Naj bo $A \in \R^{m \times n}$ in $\rang A = n$. Potem je $A^\T A$ obrnljiva in velja
+$$A^+ ~=~ (A^\T A)^{-1} A^\T.$$
+
+\end{izrek}
+\vspace{0.5cm}
+
+\begin{posledica}
+
+Če je $\rang A$ enak številu stolpcev ali številu vrstic $A$, pteom $A^+$ obstaja.
+
+\end{posledica}
+\vspace{0.5cm}
+
+\begin{lema}
+
+Naj bo $A \in \R^{m \times n}$, $\rang A = r$. Potem obstajata $F \in \R^{m \times r}$, $G \in \R^{r \times n}$, $\rang F = \rang G = r$, da velja
+$$A ~=~ FG.$$
+
+\end{lema}
+\vspace{0.5cm}
+
+\begin{izrek}
+
+$A \in \R^{m \times n}, F \in \R^{m \times r}, G \in \R^{r \times n}$, $A = FG$. Potem je
+$$A^+ ~=~ G^\T (GG^\T)^{-1} (F^\T F)^{-1} F^\T.$$
+
+\end{izrek}
+\vspace{0.5cm}
+
+\begin{posledica}
+
+Vsaka matrika ima psevdoinverz.
+
+\end{posledica}
+\vspace{0.5cm}
+
+% *************************************************************************************************
+
+\subsection{Metoda najmanjših momentov}
+\vspace{0.5cm}
+
+\begin{definicija}
+
+Vektor $\x$ reši sistem $A\x = b$ po principu \textit{najmanjših kvadratov}, če je $\|A\x -\b\|$ \textit{minimalna}:
+$$f: \R^n \rightarrow \R, ~~~f(y) ~=~ \|A\y-\b\|.$$
+$\x$ reši sistem po principu \textit{najmanjših kvadratov}, če $f$ zavzame globalni minimum pri $\y=\x$.
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{trditev}
+
+$U$ naj bo podprostor v $\R^n$, $\vv \in \R^m$ vektor, $\vv \notin U$. Potem $\forall \u \in U$, $\u \neq \text{proj}_U \vv$:
+$$\|\vv - \u\| ~>~ \|\vv - \text{proj}_U \vv\|,$$
+oziroma $\forall \u \in U$:
+$$\|\vv - \u\| ~\geq~ \|\vv - \text{proj}_U \vv\|.$$
+
+\end{trditev}
+\vspace{0.5cm}
+
+\begin{posledica}
+
+Recimo, da je $U$ podprostor v $\R^m$, $\vv \in \R^m$. Potem $f: \R^m \rightarrow \R$, 
+$$f(U) ~=~ \|\u - \vv\|$$
+zavzame globalni minimum pri $\u = \text{proj}_U \vv$.
+
+\end{posledica}
+\vspace{0.5cm}
+
+\begin{metoda}
+
+$$f(x) ~=~ \|A\x-b\|, ~~~\x \in \R^n$$
+$A\x$ so elementi podprostora $\im A$. $\x$ mora biti torej tak, da
+$$A\x ~=~ \text{proj}_{\im A} \b.$$
+
+\end{metoda}
+\vspace{0.5cm}
+
+\begin{izrek}
+
+Množica vseh rešitev sistema $A\x = \b$ po metodi najmanjših kvadratov je
+$$\RR ~=~ \{A^+ \b + (I - A^+ A)\y \mid \y \in \R^n\}.$$
+
+\end{izrek}
+\vspace{0.5cm}
+
+\begin{sklep}
+
+Vektor $\x$ je natanko rešitev sistema $A\x = \b$ po metodi najmanjših kvadratov, če velja
+$$\rang A = n ~\iff~ \x = (A^\T A)^{-1} A^\T \b.$$
+
+\end{sklep}
+\vspace{0.5cm}
+
+% *************************************************************************************************
+
+\pagebreak
+
+% #################################################################################################
+
+\section{Nenegativne matrike}
+\vspace{0.5cm}
+
+% *************************************************************************************************
+
+\subsection{Uvod}
+\vspace{0.5cm}
+
+\begin{definicija}
+
+Naj bosta $A \in \R^{n \times n}$ in $B \in \R^{n \times n}$ matriki.
+\begin{itemize}
+
+\item $A \geq 0$, $A$ je \textit{nenegativna}, če je $a_{ij} \geq 0$ $\forall i,j$
+
+\item $A > 0$, $A$ je \textit{pozitivna}, če je $a_{ij} > 0$ $\forall i,j$
+
+\item $A \geq B$, če je $A-B \geq 0$
+
+\item $A > B$, če je $A-B>0$
+
+\item $\vv \geq 0$, če so vse komponente $\vv \geq 0$
+
+\item $\vv > 0$, če so vse komponente $\vv > 0$
+	
+\end{itemize}
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{trditev}
+
+$A,B,C \in \R^{n \times n}$ so matrike. Naj bo $A \geq B$:
+\begin{enumerate}
+\item $A+B ~\geq~ B+C$
+\item $C \geq 0$ $\Longrightarrow$ $AC \geq BC$ in $CA \geq CB$
+\item $\vv \in \R^n$, $\vv \geq 0$ $\Longrightarrow$ $A\vv \geq B\vv$
+\end{enumerate}
+
+\end{trditev}
+\vspace{0.5cm}
+
+\begin{definicija}[Permutacijska matrika]
+
+Naj bo $\sigma \in S_n$ permutacija. \textit{Permutacijska matrika}, ki pripada $\sigma$, je matrika $P \in \R^{m \times}$, ki ima na mestih $(i, \sigma(i))$ enke, druge pa ničle.
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{definicija}
+
+$A \in \R^{n \times}$ je \textit{reducibilna} (\textit{razcepna}), če obstaja permutacijska matrika $P$, da je
+$$P^\T AP ~=~ \begin{bmatrix}
+\text{kvadraten blok} & * \\
+0 & \text{kvadraten blok}
+\end{bmatrix}.$$
+$A$ je \textit{ireducibilna}, če ni reducibilna.
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{lema}
+
+$A \in \R^{n \times n}$, $A \geq 0$ naj bo ireducibilna. Naj bo $\y \in \R^n$, $\y \geq 0$. Naj ima $\y$ natanko $k$ pozitivnih komponent, $1 \leq k < n$. Potem ima 
+$$(I+A)\y$$ 
+strogo več kot $k$ pozitivnih komponent.
+
+\end{lema}
+\vspace{0.5cm}
+
+\begin{posledica}
+
+$A \in \R^{n \times n}$, $A \geq 0$ naj bo ireducibilna. Naj bo $\y \in \R^n$, $\y \neq 0$, $\y \geq 0$. Potem
+$$(I+A)^{n-1}\y ~>~ 0.$$
+
+\end{posledica}
+\vspace{0.5cm}
+
+\begin{izrek}
+
+$A \in \R^{n \times n}$, $A \geq 0$. $A$ je ireducibilna $\iff$ $(I+A)^{n-1} > 0$.
+
+\end{izrek}
+\vspace{0.5cm}
+
+\begin{izrek}
+
+Naj bo $A \in \R^{n \times n}$, $A \geq 0$. Potem je $A$ ireducibilna $\iff$ za vsak par indeksov $(i,j)$ obstaja $k \in \N$, da je $(i,j)$-ti element matrike $A^k$ strogo pozitiven.
+
+\end{izrek}
+\vspace{0.5cm}
+
+\begin{posledica}
+
+$A \geq 0$ je ireducibilna natanko tedaj, ko med poljubnima \\vozliščema v grafu, ki smo ga priredili tej matriki, obstaja pot.
+
+\end{posledica}
+\vspace{0.5cm}
+
+% *************************************************************************************************
+
+\subsection{Perron-Frobeniusov izrek}
+\vspace{0.5cm}
+
+\begin{izrek}
+
+Naj bo $A \geq 0$ ireducibilna. Potem obstaja lastna vrednost $\rho$ matrike $A$. da velja
+$$\rho ~\geq~ |\lambda|,$$
+za vsako lastno vrednost $\lambda$ matrike $A$.
+\begin{enumerate}
+	\item Za $\rho$ obstaja lasten vektor, ki ima vse komponente strogo pozitivne.
+	\item $\dim(\ker(A - \rho I)) ~=~ 1$
+\end{enumerate}
+
+\end{izrek}
+\vspace{0.5cm}
+
+\begin{definicija}
+
+$\rho$ se imenuje \textit{Perron-Frobeniusova lastna vrednost} matrike $A$. Lasten vektor za $\rho$, ki ima vse komponente strogo pozitivne in je dolg $1$, se imenuje \textit{Perron-Frobeniusov lastni vektor} matrike $A$.
+\begin{align*}
+\P^n ~&=~ \{(x_1,\ldots,x_n) \in \R^n \mid x_i \geq 0, ~\forall i\} \\
+\E^n ~&=~ \{(x_1,\ldots,x_n) \in \P^n \mid x_1 + \ldots + x_n = 1\}
+\end{align*} 
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{definicija}[Collatz-Wielandtova funkcija]
+
+Naj bo $A \geq 0$, ireducibilna. \textit{Collatz-Wielandtova funkcija} matrike $A$ je
+$$f_A: \P^n \setminus \{0\} \rightarrow \R, ~~~f_A(\x) ~=~ \min_{x_i \neq 0} \frac{(A\x)_i}{x_i}.$$
+
+\end{definicija}
+\vspace{0.5cm}
+
+\begin{opomba}
+
+Cilj je dokazati: če je $A$ ireducibilna, potem $f_A$ na $\E^n$ zavzame globalni maksimum.
+
+\end{opomba}
+\vspace{0.5cm}
+
+\begin{trditev}
+
+$A \geq 0$ je ireducibilna, $\x \in \P^n \setminus \{0\}$.
+\begin{enumerate}
+
+\item $\forall t > 0$: 
+$$f_A(t\x) ~=~ f_A(\x)$$
+
+\item $f_A(x)$ je največje realno število $\rho$, za katerega velja
+$$A\x - \rho\x ~\geq~ 0$$
+
+\end{enumerate}
+
+\end{trditev}
+\vspace{0.5cm}
+
+\begin{trditev}
+
+Naj bo $A \geq 0$ ireducibilna. Potem je $f_A$ na $\E^n$ omejena:
+$$0 ~\leq~ f_A(\x) ~\leq~ \|A\|_1, ~~~\forall \x \in \E^n,$$
+pri čemer je $\|A\|_1$ največja vsota stolpca v $A$.
+
+\end{trditev}
+\vspace{0.5cm}
+
+\begin{izrek}
+
+Naj bo $A \geq 0$ ireducibilna. Potem $f_A$ na $\E^n$ zavzame globalni maksimum.
+\end{izrek}
+\vspace{0.5cm}
+
+\begin{izrek}[Perron-Frobeniusov izrek]
+
+$A \leq 0$ ireducibilna. Potem obstaja lastna vrednost $\rho$ matrike $A$, da je 
+$$\rho ~\geq~ |\lambda|$$
+za vsako lastno vrednost $\lambda$ matrike $A$. Obstaja tudi lasten vektor matrike $A$ za $\rho$, ki ima vse komponente nenegativne.
+
+\end{izrek}
+\vspace{0.5cm}
+
+\begin{opomba}
+
+Če je $\rho$ Perron-Frobeniusova lastna vrednost ireducibilne matrike, je
+$$\dim(\ker(A-\rho I)) ~=~ 1.$$
+
+\end{opomba}
+\vspace{0.5cm}
+
+% *************************************************************************************************
+
+\pagebreak
+
+% #################################################################################################
+
+\end{document}
